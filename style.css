@@ -308,9 +308,9 @@ body {
 }
 
 .step-icon svg {
-    width: 0.75rem; /* Make the checkmark smaller */
-    height: 0.75rem; /* Make the checkmark smaller */
-    stroke: #FFFFFF; /* Make the checkmark white */
+    width: 0.75rem;
+    height: 0.75rem;
+    stroke: #FFFFFF;
 }
 
 .step-text {
