@@ -77,7 +77,6 @@
         
         /* Hero Section */
         .hero {
-            /* Reduced padding-bottom to shorten the gap */
             padding: 12px 0 6px; 
             text-align: center;
         }
@@ -91,15 +90,15 @@
         }
         
         .hero-subtitle {
-            /* Removed flex to allow for normal text wrapping */
-            display: block; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        
-        .party-icon {
-            font-size: 1.5rem;
-        }
-        
+
+        /* Adjusted for consistent wrapping on mobile devices */
         .reward-text {
             font-size: 1.3rem;
             font-weight: 700;
@@ -107,6 +106,10 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        
+        .party-icon {
+            font-size: 1.5rem;
         }
         
         .hero-description {
@@ -298,9 +301,12 @@
                 font-size: 2.6rem;
             }
             
+            .hero-subtitle {
+                display: block;
+            }
+
             .reward-text {
-                /* Adjusted font-size and spacing for the desired two-line wrap on mobile */
-                font-size: 1.5rem;
+                font-size: 1.3rem; /* Slightly reduced font-size for better wrapping on smaller devices */
                 line-height: 1.2;
             }
             
