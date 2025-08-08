@@ -77,7 +77,8 @@
         
         /* Hero Section */
         .hero {
-            padding: 12px 0 18px;
+            /* Reduced padding-bottom to shorten the gap */
+            padding: 12px 0 6px; 
             text-align: center;
         }
         
@@ -90,12 +91,9 @@
         }
         
         .hero-subtitle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            /* Removed flex to allow for normal text wrapping */
+            display: block; 
             margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 10px;
         }
         
         .party-icon {
@@ -301,8 +299,9 @@
             }
             
             .reward-text {
-                /* Updated font-size for two-line wrapping on iPhone 13 Pro (390px viewport) */
-                font-size: 1.25rem; 
+                /* Adjusted font-size and spacing for the desired two-line wrap on mobile */
+                font-size: 1.5rem;
+                line-height: 1.2;
             }
             
             .hero-description {
@@ -447,9 +446,7 @@
             <h1 class="hero-title">Congratulations!</h1>
             
             <div class="hero-subtitle">
-                <span class="party-icon">🎉</span>
-                <span class="reward-text">$750 Back To School Shein Gift Card!</span>
-                <span class="party-icon">🎉</span>
+                <span class="party-icon">🎉</span><span class="reward-text">$750 Back To School Shein Gift<br>Card!</span><span class="party-icon">🎉</span>
             </div>
 
             <p class="hero-description">
