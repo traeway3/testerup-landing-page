@@ -191,7 +191,7 @@
         }
         
         .cta-button {
-            display: none; /* Initially hidden */
+            display: none;
             background: linear-gradient(135deg, #2D2D2D, #495057);
             color: white;
             font-size: 1rem;
@@ -209,7 +209,7 @@
             max-width: 320px;
             position: relative;
             overflow: hidden;
-            margin-top: 10px; /* Added margin for spacing */
+            margin-top: 10px;
         }
         
         .cta-button:active {
@@ -538,12 +538,10 @@
 
     <section class="cta-section">
         <div class="container">
-            <h3 id="location-header" class="location-header">Choose A Region Below📍</h3>
+            <h3 id="location-header" class="location-header">Choose A Region Below</h3>
 
             <div id="location-buttons" class="location-buttons-container">
                 <button class="location-button" onclick="selectRegion('US')">United States</button>
-                <button class="location-button" onclick="selectRegion('UK')">United Kingdom</button>
-                <button class="location-button" onclick="selectRegion('AU')">Australia</button>
                 <button class="location-button" onclick="selectRegion('CA')">Canada</button>
             </div>
 
@@ -610,7 +608,7 @@
             locationButtons.style.display = 'none';
             locationHeader.textContent = "Thank you! Click below to start👇";
             
-            // Show the final CTA button with a slight delay for smooth transition
+            // Show the final CTA button with a slight delay for a smooth transition
             setTimeout(() => {
                 finalCta.style.display = 'inline-block';
                 finalCta.style.opacity = '0';
@@ -618,7 +616,7 @@
                     finalCta.style.transition = 'opacity 0.5s ease-in-out';
                     finalCta.style.opacity = '1';
                 }, 10);
-            }, 300); // Wait for a short moment before showing the final button
+            }, 300);
         }
     </script>
 </body>
