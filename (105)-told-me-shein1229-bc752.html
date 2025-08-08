@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="Congratulations! You&#39;ve been selected for an exclusive $750 Shein reward. Complete 4 simple steps to claim your gift card.">
     <meta name="keywords" content="Shein, reward, gift card, $750, exclusive offer">
@@ -9,7 +10,7 @@
     <title>$750 Shein Reward - Claim Your Exclusive Back2School Gift Card</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -428,7 +429,7 @@
         }
     </style>
 </head>
-<body>
+<body cz-shortcut-listen="true">
     <header class="header">
         <div class="container">
             <div class="logo-pill">
@@ -514,11 +515,43 @@
             </p>
             
             <div class="legal-links">
-                <a href="#" class="legal-link">Terms &amp; Conditions</a>
+                <a href="https://www.cartoasiss.com/businesslink.html?ttclid=E_C_P_CoABgj_CLqa1punh8vhbI9Je6yDcglmNjPKrcP36K4y7bD_SxN_kL1iuAmsig8uTOTEXjARNKvRVYl_4UQpPLAvbDcnXCn4oCYtr_heKH7-9yC5cmxs4GAsVEtowsZ-G0-eL9uyPAInW0hfPgShBW177er48gXmNGt5EqNM3sM3euwMSBHYyLjA#" class="legal-link">Terms &amp; Conditions</a>
                 <span class="legal-separator">•</span>
-                <a href="#" class="legal-link">Privacy Policy</a>
+                <a href="https://www.cartoasiss.com/businesslink.html?ttclid=E_C_P_CoABgj_CLqa1punh8vhbI9Je6yDcglmNjPKrcP36K4y7bD_SxN_kL1iuAmsig8uTOTEXjARNKvRVYl_4UQpPLAvbDcnXCn4oCYtr_heKH7-9yC5cmxs4GAsVEtowsZ-G0-eL9uyPAInW0hfPgShBW177er48gXmNGt5EqNM3sM3euwMSBHYyLjA#" class="legal-link">Privacy Policy</a>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Preload critical resources
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scroll behavior for better UX
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Track CTA button clicks
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function(e) {
+                    // Allow default behavior to follow the href
+                    console.log('CTA button clicked - redirecting to:', this.href);
+                });
+            }
+            
+            // Optimize for mobile performance
+            if ('serviceWorker' in navigator) {
+                // Register service worker for caching if needed
+            }
+        });
+
+        // Viewport height fix for mobile browsers
+        function setVH() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        setVH();
+        window.addEventListener('resize', setVH);
+        window.addEventListener('orientationchange', setVH);
+    </script>
 </body>
 </html>
