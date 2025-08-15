@@ -1,245 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shein Offer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Congratulations! You've been selected for an exclusive $1000 Shein reward. Complete 4 simple steps to claim your gift card." />
+  <meta name="keywords" content="Shein, reward, gift card, $1000, exclusive offer" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>$1000 Shein Reward - Claim Your Exclusive Gift Card</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #000;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-        }
+  <!-- Match mentor's font setup -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- IMPORTANT: keep this exact path so it loads the copied css2 file -->
+  <link href="./css2" rel="stylesheet" />
 
-        .container {
-            width: 100%;
-            max-width: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-        }
+  <style>
+    /* ===== Base / Reset ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 14px; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #F5F5F7; color: #2D2D2D; line-height: 1.5; overflow-x: hidden;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    .container { max-width: 100%; margin: 0 auto; padding: 0 16px; }
 
-        .logo {
-            width: 80px;
-            height: 80px;
-            background-color: white;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            font-weight: bold;
-            color: black;
-            margin-bottom: 10px;
-        }
+    /* ===== Header ===== */
+    .header { padding: 24px 0 12px; text-align: center; }
+    .logo-pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #fff; border: 1px solid #DEE2E6; border-radius: 50px; padding: 12px 20px;
+      box-shadow: 0 1px 6px rgba(0,0,0,.08);
+    }
+    .heart-icon { width: 16px; height: 16px; margin-right: 10px; fill: #2D2D2D; }
+    .logo-text { font-size: 18px; font-weight: 700; color: #2D2D2D; letter-spacing: 1px; }
 
-        .title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+    /* ===== Hero ===== */
+    .hero { padding: 12px 0 18px; text-align: center; }
+    .hero-title { font-size: 2.2rem; font-weight: 800; color: #2D2D2D; margin-bottom: 16px; line-height: 1.1; }
+    .hero-subtitle { display:flex; align-items:center; justify-content:center; margin-bottom:16px; flex-wrap:wrap; gap:10px; }
+    .party-icon { font-size:1.5rem; }
+    .reward-text { font-size:1.3rem; font-weight:700; background:linear-gradient(135deg,#2D2D2D,#495057); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hero-description { font-size:1rem; color:#4A5568; margin-bottom:18px; font-weight:400; line-height:1.6; }
 
-        .steps {
-            text-align: center;
-            line-height: 1.8;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+    /* ===== How It Works ===== */
+    .how-it-works { padding:16px 0 20px; }
+    .section-title { font-size:1.6rem; font-weight:700; text-align:center; margin-bottom:20px; color:#2D2D2D; }
+    .steps-container { max-width:420px; margin:0 auto; }
+    .step { display:flex; align-items:flex-start; margin-bottom:12px; padding:12px; background:#fff; border-radius:6px; box-shadow:0 1px 4px rgba(0,0,0,.03); border:1px solid #E5E5E7; }
+    .step-number { flex-shrink:0; width:40px; height:40px; background:linear-gradient(135deg,#2D2D2D,#495057); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:1rem; margin-right:16px; }
+    .step-content { flex:1; padding-top:6px; }
+    .step-text { font-size:.9rem; font-weight:600; color:#2D2D2D; margin-bottom:4px; line-height:1.4; }
+    .step-subtext { font-size:.8rem; color:#6B7280; font-weight:400; line-height:1.5; }
 
-        .steps div {
-            margin-bottom: 8px;
-        }
+    /* ===== CTA ===== */
+    .cta-section { padding:18px 0 24px; text-align:center; }
+    .cta-button {
+      display:inline-block; background:linear-gradient(135deg,#2D2D2D,#495057); color:#fff; font-size:1rem; font-weight:700; padding:18px 32px; border:none; border-radius:50px; text-decoration:none; text-transform:uppercase; letter-spacing:.5px; box-shadow:0 3px 16px rgba(0,0,0,.15); transition:all .3s ease; cursor:pointer; width:100%; max-width:320px; position:relative; overflow:hidden;
+    }
+    .cta-button:active { transform: translateY(1px); box-shadow:0 2px 8px rgba(0,0,0,.25); }
+    .cta-button::before { content:""; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent); transition:left .5s; }
+    .cta-button:active::before { left:100%; }
+    .cta-microcopy { font-size:.8rem; color:#6B7280; margin-top:10px; font-weight:500; }
 
-        .highlight {
-            color: white;
-            font-weight: bold;
-        }
+    /* ===== Footer ===== */
+    .footer { padding:18px 0 16px; text-align:center; margin-top:12px; }
+    .footer-logo { opacity:.4; margin-bottom:12px; }
+    .footer-logo-text { font-size:.8rem; color:#9CA3AF; font-weight:600; }
+    .geo-restriction { font-size:.7rem; color:#6B7280; font-weight:500; margin-bottom:10px; line-height:1.4; max-width:280px; margin-left:auto; margin-right:auto; }
+    .legal-links { display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; }
+    .legal-link { font-size:.7rem; color:#9CA3AF; text-decoration:none; transition: color .2s ease; }
+    .legal-link:active { color:#2D2D2D; }
+    .legal-separator { color:#D1D5DB; font-size:.7rem; }
 
-        .question {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 30px 0 20px 0;
-            transition: opacity 0.3s ease;
-        }
+    /* ===== Responsive ===== */
+    @media (min-width: 375px){ .container{padding:0 20px;} .hero-title{font-size:2.6rem;} .reward-text{font-size:1.5rem;} .hero-description{font-size:1.1rem;} .step{padding:14px; margin-bottom:14px;} }
+    @media (min-width: 414px){ .container{padding:0 24px;} .header{padding:20px 0 16px;} .hero{padding:16px 0 20px;} .how-it-works{padding:18px 0 24px;} .cta-section{padding:20px 0 28px;} .step{padding:16px; margin-bottom:16px;} .step-number{width:44px; height:44px; font-size:1.1rem; margin-right:18px;} .step-text{font-size:1rem;} }
+    @media (min-width: 768px){
+      .container{max-width:540px; padding:0 28px;} .header{padding:24px 0 18px;} .hero{padding:18px 0 24px;} .how-it-works{padding:20px 0 28px;} .cta-section{padding:24px 0 32px;} .hero-title{font-size:3rem;} .reward-text{font-size:1.7rem;}
+      .cta-button{font-size:1.1rem; padding:20px 40px; max-width:380px;} .cta-button:hover{transform:translateY(-2px); box-shadow:0 5px 20px rgba(0,0,0,.25);} .cta-button:hover::before{left:100%;}
+      .step{padding:18px; margin-bottom:18px;}
+    }
 
-        .question.hidden {
-            opacity: 0;
-        }
-
-        .buttons-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .country-btn {
-            background-color: white;
-            color: black;
-            border: none;
-            padding: 15px 20px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .country-btn:hover {
-            background-color: #f0f0f0;
-            transform: translateY(-2px);
-        }
-
-        .claim-btn {
-            background-color: white;
-            color: black;
-            border: none;
-            padding: 18px 20px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .claim-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
-        }
-
-        .verification {
-            font-size: 14px;
-            color: #888;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .bottom-text {
-            font-size: 14px;
-            color: #ccc;
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        @media (max-height: 700px) {
-            .container {
-                gap: 20px;
-            }
-            .logo {
-                width: 70px;
-                height: 70px;
-                font-size: 42px;
-            }
-            .title {
-                font-size: 18px;
-                margin-bottom: 15px;
-            }
-            .steps {
-                font-size: 15px;
-                margin-bottom: 15px;
-            }
-            .question {
-                margin: 20px 0 15px 0;
-            }
-        }
-
-        @media (max-height: 600px) {
-            body {
-                padding: 15px;
-            }
-            .container {
-                gap: 15px;
-            }
-            .logo {
-                width: 60px;
-                height: 60px;
-                font-size: 36px;
-            }
-            .title {
-                font-size: 16px;
-                margin-bottom: 10px;
-            }
-            .steps {
-                font-size: 14px;
-                margin-bottom: 10px;
-            }
-            .question {
-                font-size: 16px;
-                margin: 15px 0 10px 0;
-            }
-            .bottom-text {
-                margin-top: 20px;
-                font-size: 13px;
-            }
-        }
-    </style>
+    /* ===== Motion / Focus ===== */
+    .step, .cta-button, .logo-pill { will-change: transform; }
+    @media (prefers-reduced-motion: reduce){ *{ animation-duration: .01ms !important; animation-iteration-count:1 !important; transition-duration: .01ms !important; } }
+    .cta-button:focus { outline:3px solid #93C5FD; outline-offset:2px; }
+    .legal-link:focus { outline:2px solid #93C5FD; outline-offset:1px; }
+  </style>
 </head>
 <body>
+  <!-- Header Section -->
+  <header class="header">
     <div class="container">
-        <div class="logo">S</div>
-        
-        <div class="title">Follow the steps below!</div>
-        
-        <div class="steps">
-            <div>1. Answer the questions below</div>
-            <div>2. Enter <strong>basic</strong> details</div>
-            <div>3. Complete <span class="highlight">3-5 deals (important!)</span></div>
-            <div>4. Get your <span class="highlight">credit</span> and repeat <span class="highlight">anytime!</span></div>
-        </div>
-        
-        <div class="question" id="question">Where are you located?</div>
-        
-        <div class="buttons-container" id="buttonsContainer">
-            <button class="country-btn" onclick="selectCountry('United States')">United States</button>
-            <button class="country-btn" onclick="selectCountry('Canada')">Canada</button>
-        </div>
-        
-        <div class="verification">
-            Verified by TikTok
-        </div>
+      <div class="logo-pill" aria-label="SHEIN">
+        <svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        <span class="logo-text">SHEIN</span>
+      </div>
     </div>
+  </header>
 
-    <script>
-        function selectCountry(country) {
-            // Update the text of the header
-            document.getElementById('question').textContent = "Thank you! Click below to start👇";
-            
-            // Replace buttons with claim button
-            const container = document.getElementById('buttonsContainer');
-            container.innerHTML = '<button class="claim-btn" onclick="claimReward()">Claim Your Reward!</button>';
-        }
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">Congratulations!</h1>
+      <div class="hero-subtitle">
+        <span class="party-icon">🎉</span>
+        <span class="reward-text">$1000 Reward Selected</span>
+        <span class="party-icon">🎉</span>
+      </div>
+      <p class="hero-description">You've been selected for an exclusive Shein reward.</p>
+    </div>
+  </section>
 
-        function claimReward() {
-            // Redirect to external URL
-            window.location.href = 'https://rewarduplevel.com/aff_c?offer_id=1300&aff_id=27696&source=107-covers-everything-shein1300-bc771';
-        }
-    </script>
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">Your Path to $1000</h2>
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-text">Fill out super basic info 📝</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-text">Answer qualifying questions</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-text">Complete the required deals</div>
+            <div class="step-subtext">(The more you do, the higher your reward)</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-text">Receive your reward</div>
+            <div class="step-subtext">(from a minimum of $150 up to a $1000 Gift Card!)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call-to-Action Section -->
+  <section class="cta-section">
+    <div class="container">
+      <!-- Keep mentor's original tracking URL so your copy renders/behaves the same -->
+      <a href="https://t.afftrackr.com/?nc2u=QQiQKlAF9KIooMPjfMtVJhbP2jh7vf4HvQJDRoz7h5U%3D&amp;s1=AMORNING1" class="cta-button" id="cta" role="button" aria-label="Start claiming your Shein reward">
+        START NOW &amp; CLAIM YOUR REWARD
+      </a>
+      <p class="cta-microcopy">Takes less than 60 seconds to start.</p>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo" aria-hidden="true">
+        <span class="footer-logo-text">SHEIN</span>
+      </div>
+      <p class="geo-restriction">Offer only available exclusively to residents of the US, UK, AU, &amp; CA.</p>
+      <div class="legal-links" role="navigation" aria-label="Legal">
+        <a href="#terms" class="legal-link">Terms &amp; Conditions</a>
+        <span class="legal-separator">•</span>
+        <a href="#privacy" class="legal-link">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Performance + Safe Runtime (no MetaMask calls) -->
+  <script>
+    // Smooth scroll, same visual feel as mentor's page
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Viewport height fix for mobile browsers
+    function setVH(){
+      var vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', vh + 'px');
+    }
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
+
+    // Attach CTA click logging only (no wallet / MetaMask logic here)
+    var cta = document.getElementById('cta');
+    if (cta) {
+      cta.addEventListener('click', function(){
+        console.log('CTA clicked ->', this.href);
+      });
+    }
+
+    /* =====================
+       MetaMask Safe Guard
+       =====================
+       If some injected script tries to use window.ethereum in this sandboxed
+       environment, short-circuit it so we never throw "Failed to connect to MetaMask".
+    */
+    (function(){
+      var hasEthereum = typeof window !== 'undefined' && typeof window.ethereum !== 'undefined';
+      if (!hasEthereum) {
+        // Provide a harmless stub so accidental calls don't explode.
+        window.ethereum = window.ethereum || {
+          isStub: true,
+          request: function(){ return Promise.reject(new Error('MetaMask not available in this environment.')); },
+          enable: function(){ return Promise.reject(new Error('MetaMask not available in this environment.')); }
+        };
+        console.info('[Safe Mode] MetaMask not detected; running without web3.');
+      }
+    })();
+
+    /* =====================
+       Minimal Console Tests
+       (there were no tests; add smoke checks without navigation)
+    */
+    (function tests(){
+      try {
+        console.assert(!!document.querySelector('.cta-button'), 'CTA button should exist');
+        console.assert(typeof window.ethereum === 'object', 'ethereum stub should exist even without MetaMask');
+        console.assert(typeof window.ethereum.request === 'function', 'ethereum.request must be a function');
+      } catch (e) {
+        console.error('Inline tests failed:', e);
+      }
+    })();
+  </script>
 </body>
 </html>
