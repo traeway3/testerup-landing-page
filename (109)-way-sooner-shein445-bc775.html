@@ -6,22 +6,22 @@
   <title>Back to School Rewards Program</title>
   <meta name="description" content="Back to School Rewards Program - Select your country and claim your reward.">
   <!--
-    This page is a simplified recreation of the mentor's simple-progress-selector experience.
-    It presents a small interactive flow where users select their country and then see the
-    remaining steps required to claim their reward. The design closely mirrors the
-    progress selector shown in the provided assets, but uses custom CSS and JavaScript
-    instead of relying on external frameworks. If additional countries need to be
-    supported, you can add more <option> elements in the <select> below.
+    This file recreates the mentor's simple progress selector experience using custom
+    HTML, CSS, and a small amount of JavaScript. It is structured as a single
+    centered card that contains a progress bar and two steps. On selecting a
+    country, the page advances to the second step, updates the progress bar,
+    and reveals the final checklist and call-to-action. The design aims to be
+    visually identical to the provided recording.
   -->
   <style>
-    /* Base resets and typography */
+    /* Reset and base styling */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     body {
-      font-family: "Inter", Arial, sans-serif;
+      font-family: 'Inter', Arial, sans-serif;
       background-color: #F5F5F7;
       color: #2D2D2D;
       min-height: 100vh;
@@ -37,31 +37,36 @@
       text-align: center;
     }
     h2 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 8px;
       text-align: center;
     }
     p {
       font-size: 0.9rem;
-      line-height: 1.4;
-      text-align: center;
+      line-height: 1.5;
       color: #6B7280;
+      text-align: center;
     }
-
+    .subheadline {
+      font-size: 0.8rem;
+      color: #6B7280;
+      font-weight: 500;
+      margin-bottom: 8px;
+      text-align: center;
+    }
     /* Card container */
     .card {
-      background-color: #ffffff;
+      background-color: #FFFFFF;
       border-radius: 20px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 420px;
-      padding: 24px 32px;
+      padding: 28px 32px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
     /* Logo container */
     .logo-box {
       background-color: #000000;
@@ -79,7 +84,6 @@
       border-radius: 16px;
       object-fit: cover;
     }
-
     /* Progress bar */
     .progress-container {
       width: 100%;
@@ -91,42 +95,31 @@
     }
     .progress-fill {
       height: 100%;
-      background-color: #2D2D2D;
+      background-color: #000000;
       width: var(--progress-width, 25%);
       transition: width 0.4s ease;
     }
-
-    /* Step container */
-    .step {
-      width: 100%;
-    }
-
-    .select {
-      width: 100%;
-      height: 48px;
-      border-radius: 8px;
-      border: 1px solid #DEE2E6;
-      padding: 0 16px;
-      font-size: 1rem;
-      color: #2D2D2D;
-      background-color: #ffffff;
-      margin-top: 16px;
-      appearance: none;
-      position: relative;
-    }
-
-    /* Dropdown arrow */
-    .select::-ms-expand {
-      display: none;
-    }
+    /* Country select */
     .select-container {
       position: relative;
       width: 100%;
       max-width: 260px;
       margin: 0 auto;
     }
+    select {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+      font-size: 1rem;
+      border: 1px solid #DEE2E6;
+      border-radius: 8px;
+      background-color: #FFFFFF;
+      color: #2D2D2D;
+      appearance: none;
+    }
+    /* Arrow for native select */
     .select-container::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 50%;
       right: 16px;
@@ -136,29 +129,29 @@
       border-top: 6px solid #2D2D2D;
       pointer-events: none;
     }
-
+    /* Tasks list */
     .tasks {
       list-style: none;
       padding: 0;
       margin: 16px 0;
+      width: 100%;
     }
-    /* Each task is styled as a pill with a dark check icon */
     .tasks li {
       display: flex;
       align-items: center;
       font-size: 0.9rem;
       color: #2D2D2D;
-      background-color: #F5F5F7;
+      background-color: #ffffff;
       border: 1px solid #E5E5E7;
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 12px;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
     }
     .tasks li:last-child {
       margin-bottom: 0;
     }
     .tasks li::before {
-      content: "✓";
+      content: '✓';
       display: flex;
       align-items: center;
       justify-content: center;
@@ -167,31 +160,35 @@
       min-width: 20px;
       margin-right: 12px;
       border-radius: 50%;
-      background-color: #2D2D2D;
-      color: #ffffff;
+      background-color: #000000;
+      color: #FFFFFF;
       font-size: 12px;
       font-weight: 700;
     }
-
+    /* CTA button */
     .button {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       height: 48px;
-      background-color: #2D2D2D;
+      background-color: #ff8f00;
       color: #ffffff;
       border: none;
       border-radius: 8px;
       font-size: 1rem;
-      font-weight: 600;
+      font-family: 'Open Sans', 'Inter', sans-serif;
+      font-weight: 700;
       cursor: pointer;
       margin-top: 24px;
       text-decoration: none;
-      text-align: center;
-      line-height: 48px;
-      transition: background-color 0.2s ease, transform 0.1s ease;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.08),
+                  0px 3px 14px 2px rgba(0, 0, 0, 0.04),
+                  0px 8px 10px 1px rgba(0, 0, 0, 0.06);
     }
     .button:hover {
-      background-color: #495057;
+      background-color: #e57e00;
     }
     .button:active {
       transform: translateY(1px);
@@ -202,32 +199,28 @@
   <div class="card">
     <h1>Back to School Rewards Program</h1>
     <div class="logo-box">
-      <!-- Use the provided logo image for the S brand -->
       <img src="3e5a46cc-3554-46d8-ba85-18df325d7344.png" alt="Logo">
     </div>
-    <p class="small">Reward Progress</p>
+    <div class="subheadline">Reward Progress</div>
     <div class="progress-container">
-      <div class="progress-fill"></div>
+      <div class="progress-fill" id="progressFill"></div>
     </div>
-
-    <!-- Step 1: Country selection -->
-    <div class="step" id="step1">
+    <!-- Step 1: country selection -->
+    <div id="step1" class="step">
       <h2>Which country do you reside in?</h2>
       <p>This reward is currently limited to specific regions. Please confirm your location.</p>
       <div class="select-container">
-        <select id="countrySelect" class="select">
+        <select id="countrySelect">
           <option value="">Select your country</option>
           <option value="US">United States</option>
           <option value="CA">Canada</option>
           <option value="UK">United Kingdom</option>
           <option value="AU">Australia</option>
-          <option value="Other">Other</option>
         </select>
       </div>
     </div>
-
-    <!-- Step 2: Final instructions -->
-    <div class="step" id="step2" style="display: none;">
+    <!-- Step 2: final tasks and CTA -->
+    <div id="step2" class="step" style="display: none;">
       <h2>Almost there!</h2>
       <p>Just a few more steps to start earning</p>
       <ul class="tasks">
@@ -235,24 +228,20 @@
         <li>Provide a valid email address</li>
         <li>Ensure you are 18 years or older</li>
       </ul>
-      <!-- CTA button leading to the offer; update the query parameters if needed -->
       <a href="https://rewarduplevel.com/aff_c?offer_id=445&aff_id=27696&source=109-way-sooner-shein445-bc775" class="button">Continue to Claim Reward</a>
     </div>
   </div>
-
   <script>
-    // Simple progress-flow logic: once a country is selected, transition to the next step
+    // When a country is selected, reveal step 2 and update the progress bar
     document.addEventListener('DOMContentLoaded', function () {
       const selectEl = document.getElementById('countrySelect');
       const step1 = document.getElementById('step1');
       const step2 = document.getElementById('step2');
-      const progressFill = document.querySelector('.progress-fill');
-
+      const progressFill = document.getElementById('progressFill');
       selectEl.addEventListener('change', function () {
         if (this.value) {
-          // Advance progress bar to 75%
-          progressFill.style.width = '75%';
-          // Hide first step and show second step
+          // progress to halfway
+          progressFill.style.width = '50%';
           step1.style.display = 'none';
           step2.style.display = 'block';
         }
