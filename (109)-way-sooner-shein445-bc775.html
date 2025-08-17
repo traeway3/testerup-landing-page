@@ -144,11 +144,12 @@
     .cta-button:focus { outline: 3px solid #93C5FD; outline-offset: 2px; }
     .legal-link:focus { outline: 2px solid #93C5FD; outline-offset: 1px; }
   
-    /* --- Country Gate (scoped) --- */
-    body.gated .hero,
-    body.gated .how-it-works,
-    body.gated .cta-section,
-    body.gated .footer { display: none !important; }
+    
+    /* --- Country Gate (scoped) UPDATED --- */
+    /* Hide main content until selection */
+    body.gated #main-sections { display: none; }
+    #main-sections { opacity: 0; transform: translateY(6px); transition: opacity 300ms ease, transform 300ms ease; }
+    body.ready #main-sections { opacity: 1; transform: translateY(0); }
 
     #country-gate {
       display: none;
@@ -160,7 +161,7 @@
       margin: 0 auto;
       background: #ffffff;
       border: 1px solid #E5E5E7;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 16px;
       box-shadow: 0 1px 6px rgba(0,0,0,0.06);
       text-align: left;
@@ -172,39 +173,37 @@
       color: #2D2D2D;
       text-align: center;
     }
-    #country-gate label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #2D2D2D;
+    #country-gate .gate-choices {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    #country-gate .gate-choice {
       display: block;
-      margin-bottom: 6px;
-    }
-    #country-gate select {
       width: 100%;
-      height: 44px;
-      border-radius: 8px;
+      background: #ffffff;
+      color: #2D2D2D;
       border: 1px solid #DEE2E6;
-      padding: 0 12px;
-      font-size: 0.95rem;
-      background: #fff;
-    }
-    #country-gate .gate-actions {
-      margin-top: 14px;
-      text-align: center;
-    }
-    #country-gate .gate-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #2D2D2D, #495057);
-      color: #fff;
+      border-radius: 16px;
+      padding: 14px 18px;
+      font-size: 1.1rem;
       font-weight: 700;
-      padding: 12px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      border: 0;
+      text-align: left;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      transition: background 220ms ease, color 220ms ease, transform 120ms ease, box-shadow 220ms ease;
       cursor: pointer;
-      width: 100%;
-      max-width: 260px;
-      box-shadow: 0 3px 16px rgba(0,0,0,0.12);
+    }
+    #country-gate .gate-choice:active {
+      transform: translateY(1px);
+    }
+    /* Active/hover state styled to match the page's CTA tones */
+    #country-gate .gate-choice:hover,
+    #country-gate .gate-choice:focus-visible {
+      background: linear-gradient(135deg, #2D2D2D, #495057);
+      color: #ffffff;
+      outline: none;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.15);
     }
     #country-gate .gate-help {
       font-size: 0.8rem;
@@ -212,8 +211,7 @@
       text-align: center;
       margin-top: 10px;
     }
-
-  </style>
+</style>
 </head>
 <body>
   <!-- Header Section -->
@@ -229,27 +227,23 @@
   </header>
 
   <!-- Country Selection Gate -->
+  
+  <!-- Country Selection Gate -->
   <section id="country-gate" aria-label="Select your country">
     <div class="container">
-      <div class="gate-card" role="group">
-        <div class="gate-title">Select your country to continue</div>
-        <label for="country-select">Country</label>
-        <select id="country-select" aria-label="Country">
-          <option value="" selected disabled>Choose your country</option>
-          <option value="US">United States</option>
-          <option value="UK">United Kingdom</option>
-          <option value="CA">Canada</option>
-          <option value="AU">Australia</option>
-          <option value="NZ">New Zealand</option>
-          <option value="Other">Other</option>
-        </select>
-        <div class="gate-actions">
-          <button id="country-continue" class="gate-button" type="button" aria-label="Continue">Continue</button>
+      <div class="gate-card" role="group" aria-labelledby="gate-title">
+        <div id="gate-title" class="gate-title">Select your country to continue</div>
+        <div class="gate-choices">
+          <button class="gate-choice" data-country="US" type="button">United States</button>
+          <button class="gate-choice" data-country="CA" type="button">Canada</button>
+          <button class="gate-choice" data-country="AU" type="button">Australia</button>
+          <button class="gate-choice" data-country="UK" type="button">United Kingdom</button>
         </div>
         <div class="gate-help">This helps us show the right eligibility details.</div>
       </div>
     </div>
   </section>
+
 
 
   <!-- Hero Section -->
@@ -350,39 +344,45 @@
     });
 
 
-    // --- Country Gate logic ---
+    
+    // --- Country Gate logic (updated) ---
     (function() {
       try {
-        var skipGate = localStorage.getItem('shein_gate_skipped');
-        if (!skipGate) {
-          document.body.classList.add('gated');
+        // Always show gate on load
+        document.body.classList.add('gated');
+        var main = document.getElementById('main-sections');
+        if (main) { main.style.opacity = '0'; }
+
+        function proceed(countryCode) {
+          // reveal main sections smoothly
+          var gate = document.getElementById('country-gate');
+          if (gate) {
+            gate.style.transition = 'opacity 280ms ease, transform 280ms ease';
+            gate.style.opacity = '0';
+            gate.style.transform = 'translateY(-8px)';
+            setTimeout(function(){
+              if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+              if (main) {
+                main.style.display = 'block';
+                // ensure the transition applies
+                requestAnimationFrame(function(){
+                  document.body.classList.remove('gated');
+                  document.body.classList.add('ready');
+                });
+              }
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 300);
+          }
         }
-        var continueBtn = document.getElementById('country-continue');
-        var select = document.getElementById('country-select');
-        if (continueBtn && select) {
-          continueBtn.addEventListener('click', function() {
-            var val = select.value;
-            if (!val) {
-              select.focus();
-              select.setAttribute('aria-invalid', 'true');
-              return;
-            }
-            // Remember choice (skip gate next time)
-            try { localStorage.setItem('shein_gate_skipped', '1'); } catch (e) {}
-            document.body.classList.remove('gated');
-            // Smoothly remove the gate section
-            var gate = document.getElementById('country-gate');
-            if (gate) {
-              gate.style.opacity = '1';
-              gate.style.transition = 'opacity 220ms ease';
-              requestAnimationFrame(function(){ gate.style.opacity = '0'; });
-              setTimeout(function(){
-                gate.remove();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }, 240);
-            }
+
+        // Click handlers on the four buttons
+        var choices = document.querySelectorAll('#country-gate .gate-choice');
+        choices.forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var code = this.getAttribute('data-country');
+            proceed(code);
           });
-        }
+        });
       } catch(e) { console.warn('Gate init error', e); }
     })();
 
