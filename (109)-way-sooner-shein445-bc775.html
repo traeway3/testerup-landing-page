@@ -145,18 +145,15 @@
     .legal-link:focus { outline: 2px solid #93C5FD; outline-offset: 1px; }
   
     
-    /* --- Country Gate (scoped) UPDATED --- */
-    /* Hide main content until selection */
-    body.gated #main-sections { display: none; }
-    #main-sections { opacity: 0; transform: translateY(6px); transition: opacity 300ms ease, transform 300ms ease; }
-    body.ready #main-sections { opacity: 1; transform: translateY(0); }
+    
+    /* --- Country Gate (Dropdown) UPDATED --- */
+    /* Ensure the rest of the page is never visible until selection (pre-JS safe) */
+    body:not(.ready) #main-sections { display: none; }
 
     #country-gate {
-      display: none;
       padding: 18px 0 24px;
     }
-    body.gated #country-gate { display: block; }
-    #country-gate .gate-card {
+    .gate-card {
       max-width: 420px;
       margin: 0 auto;
       background: #ffffff;
@@ -164,52 +161,105 @@
       border-radius: 12px;
       padding: 16px;
       box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-      text-align: left;
     }
-    #country-gate .gate-title {
+    .gate-title {
       font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 12px;
       color: #2D2D2D;
       text-align: center;
     }
-    #country-gate .gate-choices {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 8px;
+    .gate-help {
+      font-size: 0.8rem;
+      color: #6B7280;
+      text-align: center;
+      margin-top: 12px;
     }
-    #country-gate .gate-choice {
-      display: block;
+
+    /* Dropdown */
+    .country-dropdown {
+      position: relative;
+      margin-top: 6px;
+    }
+    .country-toggle {
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       background: #ffffff;
       color: #2D2D2D;
       border: 1px solid #DEE2E6;
       border-radius: 16px;
-      padding: 14px 18px;
+      padding: 16px 18px;
       font-size: 1.1rem;
       font-weight: 700;
-      text-align: left;
       box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-      transition: background 220ms ease, color 220ms ease, transform 120ms ease, box-shadow 220ms ease;
+      transition: box-shadow 220ms ease, transform 120ms ease;
       cursor: pointer;
     }
-    #country-gate .gate-choice:active {
-      transform: translateY(1px);
+    .country-toggle:active { transform: translateY(1px); }
+    .country-toggle .chev {
+      width: 22px; height: 22px; opacity: .7;
     }
-    /* Active/hover state styled to match the page's CTA tones */
-    #country-gate .gate-choice:hover,
-    #country-gate .gate-choice:focus-visible {
-      background: linear-gradient(135deg, #2D2D2D, #495057);
+
+    .country-dropdown.open .country-toggle .chev {
+      transform: rotate(180deg);
+      transition: transform 180ms ease;
+    }
+
+    .country-popover {
+      position: absolute;
+      left: 0; right: 0;
+      top: calc(100% + 8px);
+      background: #ffffff;
+      border: 1px solid #DEE2E6;
+      border-radius: 22px;
+      padding: 8px;
+      box-shadow: 0 6px 26px rgba(0,0,0,0.12);
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 220ms ease, transform 220ms ease;
+      z-index: 10;
+    }
+    .country-dropdown.open .country-popover {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .menu-item {
+      width: 100%;
+      text-align: left;
+      background: #ffffff;
+      color: #2D2D2D;
+      border: 0;
+      border-radius: 16px;
+      padding: 16px 18px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 180ms ease, color 180ms ease, transform 120ms ease, box-shadow 180ms ease;
+      display: block;
+    }
+    .menu-item + .menu-item { margin-top: 6px; }
+    .menu-item:hover, .menu-item:focus-visible {
+      background: #111; /* dark like screenshot header item */
       color: #ffffff;
       outline: none;
       box-shadow: 0 3px 16px rgba(0,0,0,0.15);
     }
-    #country-gate .gate-help {
-      font-size: 0.8rem;
-      color: #6B7280;
-      text-align: center;
-      margin-top: 10px;
+    .menu-item:active { transform: translateY(1px); }
+
+    /* Smooth reveal of main sections */
+    #main-sections {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 300ms ease, transform 300ms ease;
+    }
+    body.ready #main-sections {
+      opacity: 1;
+      transform: translateY(0);
+      display: block;
     }
 </style>
 </head>
@@ -229,20 +279,40 @@
   <!-- Country Selection Gate -->
   
   <!-- Country Selection Gate -->
+  
+  <!-- Country Selection Gate -->
   <section id="country-gate" aria-label="Select your country">
     <div class="container">
       <div class="gate-card" role="group" aria-labelledby="gate-title">
         <div id="gate-title" class="gate-title">Select your country to continue</div>
-        <div class="gate-choices">
-          <button class="gate-choice" data-country="US" type="button">United States</button>
-          <button class="gate-choice" data-country="CA" type="button">Canada</button>
-          <button class="gate-choice" data-country="AU" type="button">Australia</button>
-          <button class="gate-choice" data-country="UK" type="button">United Kingdom</button>
+
+        <div class="country-dropdown" id="countryDropdown">
+          <button class="country-toggle" id="countryToggle" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="countryMenu">
+            <span class="country-placeholder">Select your country</span>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+
+          <div class="country-popover" id="countryMenu" role="listbox" tabindex="-1" aria-label="Countries">
+            <button role="option" class="menu-item" data-country="US" type="button" aria-selected="false">
+              <span>United States</span>
+            </button>
+            <button role="option" class="menu-item" data-country="CA" type="button" aria-selected="false">
+              <span>Canada</span>
+            </button>
+            <button role="option" class="menu-item" data-country="AU" type="button" aria-selected="false">
+              <span>Australia</span>
+            </button>
+            <button role="option" class="menu-item" data-country="UK" type="button" aria-selected="false">
+              <span>United Kingdom</span>
+            </button>
+          </div>
         </div>
+
         <div class="gate-help">This helps us show the right eligibility details.</div>
       </div>
     </div>
   </section>
+
 
 
 
@@ -345,45 +415,81 @@
 
 
     
-    // --- Country Gate logic (updated) ---
+    
+    // --- Country Gate (Dropdown) logic UPDATED ---
     (function() {
-      try {
-        // Always show gate on load
-        document.body.classList.add('gated');
-        var main = document.getElementById('main-sections');
-        if (main) { main.style.opacity = '0'; }
+      var body = document.body;
+      // Always start gated; main hidden via CSS until .ready is added
+      body.classList.remove('ready'); // ensure hidden on reload
 
-        function proceed(countryCode) {
-          // reveal main sections smoothly
-          var gate = document.getElementById('country-gate');
-          if (gate) {
-            gate.style.transition = 'opacity 280ms ease, transform 280ms ease';
-            gate.style.opacity = '0';
-            gate.style.transform = 'translateY(-8px)';
-            setTimeout(function(){
-              if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
-              if (main) {
-                main.style.display = 'block';
-                // ensure the transition applies
-                requestAnimationFrame(function(){
-                  document.body.classList.remove('gated');
-                  document.body.classList.add('ready');
-                });
-              }
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 300);
-          }
+      var dd = document.getElementById('countryDropdown');
+      var toggle = document.getElementById('countryToggle');
+      var menu = document.getElementById('countryMenu');
+
+      function openMenu() {
+        dd.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        // focus first item for accessibility
+        var first = menu.querySelector('.menu-item');
+        if (first) first.focus({ preventScroll: true });
+      }
+      function closeMenu() {
+        dd.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      toggle.addEventListener('click', function(){
+        if (dd.classList.contains('open')) closeMenu();
+        else openMenu();
+      });
+
+      // Close on outside click / escape
+      document.addEventListener('click', function(e){
+        if (!dd.contains(e.target)) closeMenu();
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      // Keyboard navigation inside listbox
+      menu.addEventListener('keydown', function(e){
+        var items = Array.from(menu.querySelectorAll('.menu-item'));
+        var current = document.activeElement;
+        var i = items.indexOf(current);
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          (items[i+1] || items[0]).focus();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          (items[i-1] || items[items.length-1]).focus();
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          current.click();
         }
+      });
 
-        // Click handlers on the four buttons
-        var choices = document.querySelectorAll('#country-gate .gate-choice');
-        choices.forEach(function(btn){
-          btn.addEventListener('click', function(){
-            var code = this.getAttribute('data-country');
-            proceed(code);
-          });
+      function proceed(country) {
+        // fade out gate, reveal main sections (no persistence)
+        var gate = document.getElementById('country-gate');
+        var main = document.getElementById('main-sections');
+        if (!gate || !main) return;
+        gate.style.transition = 'opacity 280ms ease, transform 280ms ease';
+        gate.style.opacity = '0';
+        gate.style.transform = 'translateY(-8px)';
+        setTimeout(function(){
+          if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+          body.classList.add('ready');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 300);
+      }
+
+      // Click selection: auto proceed
+      menu.querySelectorAll('.menu-item').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var code = this.getAttribute('data-country');
+          proceed(code);
         });
-      } catch(e) { console.warn('Gate init error', e); }
+      });
     })();
 
 
