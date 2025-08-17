@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <meta name="description" content="Congratulations! You've been selected for an exclusive $500 Shein reward. Complete 4 simple steps to claim your gift card." />
-  <meta name="keywords" content="Shein, reward, gift card, $500, exclusive offer" />
+  <meta name="description" content="Congratulations! You've been selected for an exclusive $750 Shein reward. Complete 4 simple steps to claim your gift card." />
+  <meta name="keywords" content="Shein, reward, gift card, $750, exclusive offer" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>$500 Shein Reward - Claim Your Exclusive Gift Card</title>
+  <title>$750 Shein Reward - Claim Your Exclusive Gift Card</title>
 
   <!-- Google Fonts (clean CDN link) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,6 +143,76 @@
     }
     .cta-button:focus { outline: 3px solid #93C5FD; outline-offset: 2px; }
     .legal-link:focus { outline: 2px solid #93C5FD; outline-offset: 1px; }
+  
+    /* --- Country Gate (scoped) --- */
+    body.gated .hero,
+    body.gated .how-it-works,
+    body.gated .cta-section,
+    body.gated .footer { display: none !important; }
+
+    #country-gate {
+      display: none;
+      padding: 18px 0 24px;
+    }
+    body.gated #country-gate { display: block; }
+    #country-gate .gate-card {
+      max-width: 420px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #E5E5E7;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      text-align: left;
+    }
+    #country-gate .gate-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #2D2D2D;
+      text-align: center;
+    }
+    #country-gate label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #2D2D2D;
+      display: block;
+      margin-bottom: 6px;
+    }
+    #country-gate select {
+      width: 100%;
+      height: 44px;
+      border-radius: 8px;
+      border: 1px solid #DEE2E6;
+      padding: 0 12px;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+    #country-gate .gate-actions {
+      margin-top: 14px;
+      text-align: center;
+    }
+    #country-gate .gate-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #2D2D2D, #495057);
+      color: #fff;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
+      width: 100%;
+      max-width: 260px;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.12);
+    }
+    #country-gate .gate-help {
+      font-size: 0.8rem;
+      color: #6B7280;
+      text-align: center;
+      margin-top: 10px;
+    }
+
   </style>
 </head>
 <body>
@@ -158,13 +228,37 @@
     </div>
   </header>
 
+  <!-- Country Selection Gate -->
+  <section id="country-gate" aria-label="Select your country">
+    <div class="container">
+      <div class="gate-card" role="group">
+        <div class="gate-title">Select your country to continue</div>
+        <label for="country-select">Country</label>
+        <select id="country-select" aria-label="Country">
+          <option value="" selected disabled>Choose your country</option>
+          <option value="US">United States</option>
+          <option value="UK">United Kingdom</option>
+          <option value="CA">Canada</option>
+          <option value="AU">Australia</option>
+          <option value="NZ">New Zealand</option>
+          <option value="Other">Other</option>
+        </select>
+        <div class="gate-actions">
+          <button id="country-continue" class="gate-button" type="button" aria-label="Continue">Continue</button>
+        </div>
+        <div class="gate-help">This helps us show the right eligibility details.</div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
       <h1 class="hero-title">Congratulations!</h1>
       <div class="hero-subtitle">
         <span class="party-icon" aria-hidden="true">🎉</span>
-        <span class="reward-text">$500 Reward Selected</span>
+        <span class="reward-text">$750 Reward Selected</span>
         <span class="party-icon" aria-hidden="true">🎉</span>
       </div>
       <p class="hero-description">
@@ -176,7 +270,7 @@
   <!-- How It Works Section -->
   <section class="how-it-works">
     <div class="container">
-      <h2 class="section-title">Your Path to $500</h2>
+      <h2 class="section-title">Your Path to $750</h2>
       <div class="steps-container">
         <!-- Step 1 -->
         <div class="step">
@@ -205,7 +299,7 @@
           <div class="step-number">4</div>
           <div class="step-content">
             <div class="step-text">Receive your reward</div>
-            <div class="step-subtext">(from a minimum of $150 up to a $500 Gift Card!)</div>
+            <div class="step-subtext">(from a minimum of $150 up to a $750 Gift Card!)</div>
           </div>
         </div>
       </div>
@@ -254,6 +348,44 @@
         });
       }
     });
+
+
+    // --- Country Gate logic ---
+    (function() {
+      try {
+        var skipGate = localStorage.getItem('shein_gate_skipped');
+        if (!skipGate) {
+          document.body.classList.add('gated');
+        }
+        var continueBtn = document.getElementById('country-continue');
+        var select = document.getElementById('country-select');
+        if (continueBtn && select) {
+          continueBtn.addEventListener('click', function() {
+            var val = select.value;
+            if (!val) {
+              select.focus();
+              select.setAttribute('aria-invalid', 'true');
+              return;
+            }
+            // Remember choice (skip gate next time)
+            try { localStorage.setItem('shein_gate_skipped', '1'); } catch (e) {}
+            document.body.classList.remove('gated');
+            // Smoothly remove the gate section
+            var gate = document.getElementById('country-gate');
+            if (gate) {
+              gate.style.opacity = '1';
+              gate.style.transition = 'opacity 220ms ease';
+              requestAnimationFrame(function(){ gate.style.opacity = '0'; });
+              setTimeout(function(){
+                gate.remove();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }, 240);
+            }
+          });
+        }
+      } catch(e) { console.warn('Gate init error', e); }
+    })();
+
 
     // Viewport height fix for mobile browsers
     function setVH() {
