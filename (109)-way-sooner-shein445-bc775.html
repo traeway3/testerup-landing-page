@@ -1,252 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="--vh: 6.33px; scroll-behavior: smooth;">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Back to School Rewards Program</title>
-  <meta name="description" content="Back to School Rewards Program - Select your country and claim your reward.">
-  <!--
-    This file recreates the mentor's simple progress selector experience using custom
-    HTML, CSS, and a small amount of JavaScript. It is structured as a single
-    centered card that contains a progress bar and two steps. On selecting a
-    country, the page advances to the second step, updates the progress bar,
-    and reveals the final checklist and call-to-action. The design aims to be
-    visually identical to the provided recording.
-  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Congratulations! You've been selected for an exclusive $500 Shein reward. Complete 4 simple steps to claim your gift card." />
+  <meta name="keywords" content="Shein, reward, gift card, $500, exclusive offer" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>$500 Shein Reward - Claim Your Exclusive Gift Card</title>
+
+  <!-- Google Fonts (clean CDN link) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    /* Reset and base styling */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* CSS Reset and Base Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 14px; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
     body {
-      font-family: 'Inter', Arial, sans-serif;
-      background-color: #F5F5F7;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #F5F5F7;
       color: #2D2D2D;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 40px 20px;
-    }
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    h2 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-    p {
-      font-size: 0.9rem;
       line-height: 1.5;
-      color: #6B7280;
-      text-align: center;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    .subheadline {
-      font-size: 0.8rem;
-      color: #6B7280;
-      font-weight: 500;
-      margin-bottom: 8px;
-      text-align: center;
+
+    /* Container */
+    .container { max-width: 100%; margin: 0 auto; padding: 0 16px; }
+
+    /* Header Section */
+    .header { padding: 24px 0 12px; text-align: center; }
+    .logo-pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #fff; border: 1px solid #DEE2E6; border-radius: 50px;
+      padding: 12px 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.08);
     }
-    /* Card container */
-    .card {
-      background-color: #FFFFFF;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 420px;
-      padding: 28px 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .heart-icon { width: 16px; height: 16px; margin-right: 10px; fill: #2D2D2D; }
+    .logo-text { font-size: 18px; font-weight: 700; color: #2D2D2D; letter-spacing: 1px; }
+
+    /* Hero Section */
+    .hero { padding: 12px 0 18px; text-align: center; }
+    .hero-title { font-size: 2.2rem; font-weight: 800; color: #2D2D2D; margin-bottom: 16px; line-height: 1.1; }
+    .hero-subtitle {
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; flex-wrap: wrap; gap: 10px;
     }
-    /* Logo container */
-    .logo-box {
-      background-color: #000000;
-      border-radius: 16px;
-      width: 64px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
+    .party-icon { font-size: 1.5rem; }
+    .reward-text {
+      font-size: 1.3rem; font-weight: 700;
+      background: linear-gradient(135deg, #2D2D2D, #495057);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .logo-box img {
-      width: 100%;
-      height: 100%;
-      border-radius: 16px;
-      object-fit: cover;
+    .hero-description { font-size: 1rem; color: #4A5568; margin-bottom: 18px; font-weight: 400; line-height: 1.6; }
+
+    /* How It Works Section */
+    .how-it-works { padding: 16px 0 20px; }
+    .section-title { font-size: 1.6rem; font-weight: 700; text-align: center; margin-bottom: 20px; color: #2D2D2D; }
+    .steps-container { max-width: 420px; margin: 0 auto; }
+    .step {
+      display: flex; align-items: flex-start; margin-bottom: 12px; padding: 12px;
+      background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.03); border: 1px solid #E5E5E7;
     }
-    /* Progress bar */
-    .progress-container {
-      width: 100%;
-      background-color: #E5E5E7;
-      border-radius: 4px;
-      height: 6px;
-      margin: 12px 0 24px;
-      overflow: hidden;
+    .step-number {
+      flex-shrink: 0; width: 40px; height: 40px; background: linear-gradient(135deg, #2D2D2D, #495057);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 1rem; margin-right: 16px;
     }
-    .progress-fill {
-      height: 100%;
-      background-color: #000000;
-      width: var(--progress-width, 25%);
-      transition: width 0.4s ease;
+    .step-content { flex: 1; padding-top: 6px; }
+    .step-text { font-size: 0.9rem; font-weight: 600; color: #2D2D2D; margin-bottom: 4px; line-height: 1.4; }
+    .step-subtext { font-size: 0.8rem; color: #6B7280; font-weight: 400; line-height: 1.5; }
+
+    /* CTA Section */
+    .cta-section { padding: 18px 0 24px; text-align: center; }
+    .cta-button {
+      display: inline-block; background: linear-gradient(135deg, #2D2D2D, #495057); color: #fff;
+      font-size: 1rem; font-weight: 700; padding: 18px 32px; border: none; border-radius: 50px;
+      text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.15); transition: all 0.3s ease; cursor: pointer;
+      width: 100%; max-width: 320px; position: relative; overflow: hidden;
     }
-    /* Country select */
-    .select-container {
-      position: relative;
-      width: 100%;
-      max-width: 260px;
-      margin: 0 auto;
+    .cta-button:active { transform: translateY(1px); box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+    .cta-button::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
     }
-    select {
-      width: 100%;
-      height: 48px;
-      padding: 0 16px;
-      font-size: 1rem;
-      border: 1px solid #DEE2E6;
-      border-radius: 8px;
-      background-color: #FFFFFF;
-      color: #2D2D2D;
-      appearance: none;
+    .cta-button:active::before { left: 100%; }
+    .cta-microcopy { font-size: 0.8rem; color: #6B7280; margin-top: 10px; font-weight: 500; }
+
+    /* Footer Section */
+    .footer { padding: 18px 0 16px; text-align: center; margin-top: 12px; }
+    .footer-logo { opacity: 0.4; margin-bottom: 12px; }
+    .footer-logo-text { font-size: 0.8rem; color: #9CA3AF; font-weight: 600; }
+    .geo-restriction {
+      font-size: 0.7rem; color: #6B7280; font-weight: 500; margin-bottom: 10px; line-height: 1.4;
+      max-width: 280px; margin-left: auto; margin-right: auto;
     }
-    /* Arrow for native select */
-    .select-container::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: 16px;
-      transform: translateY(-50%);
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-top: 6px solid #2D2D2D;
-      pointer-events: none;
+    .legal-links { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .legal-link { font-size: 0.7rem; color: #9CA3AF; text-decoration: none; transition: color 0.2s ease; }
+    .legal-link:active { color: #2D2D2D; }
+
+    /* Responsive Design */
+    @media (min-width: 375px) {
+      .container { padding: 0 20px; }
+      .hero-title { font-size: 2.6rem; }
+      .reward-text { font-size: 1.5rem; }
+      .hero-description { font-size: 1.1rem; }
+      .step { padding: 14px; margin-bottom: 14px; }
     }
-    /* Tasks list */
-    .tasks {
-      list-style: none;
-      padding: 0;
-      margin: 16px 0;
-      width: 100%;
+    @media (min-width: 414px) {
+      .container { padding: 0 24px; }
+      .header { padding: 20px 0 16px; }
+      .hero { padding: 16px 0 20px; }
+      .how-it-works { padding: 18px 0 24px; }
+      .cta-section { padding: 20px 0 28px; }
+      .step { padding: 16px; margin-bottom: 16px; }
+      .step-number { width: 44px; height: 44px; font-size: 1.1rem; margin-right: 18px; }
+      .step-text { font-size: 1rem; }
     }
-    .tasks li {
-      display: flex;
-      align-items: center;
-      font-size: 0.9rem;
-      color: #2D2D2D;
-      background-color: #ffffff;
-      border: 1px solid #E5E5E7;
-      border-radius: 8px;
-      padding: 10px 12px;
-      margin-bottom: 10px;
+    @media (min-width: 768px) {
+      .container { max-width: 540px; padding: 0 28px; }
+      .header { padding: 24px 0 18px; }
+      .hero { padding: 18px 0 24px; }
+      .how-it-works { padding: 20px 0 28px; }
+      .cta-section { padding: 24px 0 32px; }
+      .hero-title { font-size: 3rem; }
+      .reward-text { font-size: 1.7rem; }
+      .cta-button { font-size: 1.1rem; padding: 20px 40px; max-width: 380px; }
+      .cta-button:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0,0,0,0.25); }
+      .cta-button:hover::before { left: 100%; }
+      .step { padding: 18px; margin-bottom: 18px; }
     }
-    .tasks li:last-child {
-      margin-bottom: 0;
+
+    /* Performance Optimizations */
+    .step, .cta-button, .logo-pill { will-change: transform; }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
-    .tasks li::before {
-      content: '✓';
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      min-width: 20px;
-      margin-right: 12px;
-      border-radius: 50%;
-      background-color: #000000;
-      color: #FFFFFF;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    /* CTA button */
-    .button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 48px;
-      background-color: #ff8f00;
-      color: #ffffff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: 'Open Sans', 'Inter', sans-serif;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 24px;
-      text-decoration: none;
-      transition: background-color 0.3s ease, transform 0.1s ease;
-      box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.08),
-                  0px 3px 14px 2px rgba(0, 0, 0, 0.04),
-                  0px 8px 10px 1px rgba(0, 0, 0, 0.06);
-    }
-    .button:hover {
-      background-color: #e57e00;
-    }
-    .button:active {
-      transform: translateY(1px);
-    }
+    .cta-button:focus { outline: 3px solid #93C5FD; outline-offset: 2px; }
+    .legal-link:focus { outline: 2px solid #93C5FD; outline-offset: 1px; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Back to School Rewards Program</h1>
-    <div class="logo-box">
-      <img src="3e5a46cc-3554-46d8-ba85-18df325d7344.png" alt="Logo">
-    </div>
-    <div class="subheadline">Reward Progress</div>
-    <div class="progress-container">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-    <!-- Step 1: country selection -->
-    <div id="step1" class="step">
-      <h2>Which country do you reside in?</h2>
-      <p>This reward is currently limited to specific regions. Please confirm your location.</p>
-      <div class="select-container">
-        <select id="countrySelect">
-          <option value="">Select your country</option>
-          <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="UK">United Kingdom</option>
-          <option value="AU">Australia</option>
-        </select>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="container">
+      <div class="logo-pill">
+        <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        <span class="logo-text">SHEIN</span>
       </div>
     </div>
-    <!-- Step 2: final tasks and CTA -->
-    <div id="step2" class="step" style="display: none;">
-      <h2>Almost there!</h2>
-      <p>Just a few more steps to start earning</p>
-      <ul class="tasks">
-        <li>Complete 2–3 required deals</li>
-        <li>Provide a valid email address</li>
-        <li>Ensure you are 18 years or older</li>
-      </ul>
-      <a href="https://rewarduplevel.com/aff_c?offer_id=445&aff_id=27696&source=109-way-sooner-shein445-bc775" class="button">Continue to Claim Reward</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">Congratulations!</h1>
+      <div class="hero-subtitle">
+        <span class="party-icon" aria-hidden="true">🎉</span>
+        <span class="reward-text">$500 Reward Selected</span>
+        <span class="party-icon" aria-hidden="true">🎉</span>
+      </div>
+      <p class="hero-description">
+        You've been selected for an exclusive Shein reward.
+      </p>
     </div>
-  </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">Your Path to $500</h2>
+      <div class="steps-container">
+        <!-- Step 1 -->
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-text">Fill out super basic info 📝</div>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-text">Answer qualifying questions</div>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-text">Complete the required deals</div>
+            <div class="step-subtext">(The more you do, the higher your reward)</div>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-text">Receive your reward</div>
+            <div class="step-subtext">(from a minimum of $150 up to a $500 Gift Card!)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call-to-Action Section -->
+  <section class="cta-section">
+    <div class="container">
+      <a href="https://rewarduplevel.com/aff_c?offer_id=445&aff_id=27696&source=109-way-sooner-shein445-bc775"
+         class="cta-button" role="button" aria-label="Start claiming your Shein reward">
+        START NOW &amp; CLAIM YOUR REWARD
+      </a>
+      <p class="cta-microcopy">Takes less than 60 seconds to start.</p>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <span class="footer-logo-text">SHEIN</span>
+      </div>
+      <p class="geo-restriction">
+        Offer only available exclusively to residents of the US, UK, AU, &amp; CA.
+      </p>
+      <div class="legal-links">
+        <a href="#" class="legal-link">Terms &amp; Conditions</a>
+        <span class="legal-separator">•</span>
+        <a href="#" class="legal-link">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Performance and tiny analytics-like script -->
   <script>
-    // When a country is selected, reveal step 2 and update the progress bar
-    document.addEventListener('DOMContentLoaded', function () {
-      const selectEl = document.getElementById('countrySelect');
-      const step1 = document.getElementById('step1');
-      const step2 = document.getElementById('step2');
-      const progressFill = document.getElementById('progressFill');
-      selectEl.addEventListener('change', function () {
-        if (this.value) {
-          // progress to halfway
-          progressFill.style.width = '50%';
-          step1.style.display = 'none';
-          step2.style.display = 'block';
-        }
-      });
+    // Smooth scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      document.documentElement.style.scrollBehavior = 'smooth';
+
+      // Track CTA button clicks (console only)
+      const ctaButton = document.querySelector('.cta-button');
+      if (ctaButton) {
+        ctaButton.addEventListener('click', function() {
+          console.log('CTA button clicked - redirecting to:', this.href);
+        });
+      }
     });
+
+    // Viewport height fix for mobile browsers
+    function setVH() {
+      var vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', vh + 'px');
+    }
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
   </script>
 </body>
 </html>
