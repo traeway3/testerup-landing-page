@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Claim your exclusive $500 Shein reward – select your country to continue and follow a few simple steps to claim your gift card.">
   <title>$500 Shein Reward - Claim Your Exclusive Gift Card</title>
-  <!-- Load Poppins font for a polished look similar to the original reward page -->
+  <!-- Load Poppins font for consistency with the original offer design -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -96,6 +96,10 @@
       margin-bottom: 18px;
       font-weight: 400;
       line-height: 1.6;
+    }
+    /* Hide reward subtitle until a country is selected */
+    #rewardSubtitle {
+      display: none;
     }
     /* Country selection gate */
     #countryGate {
@@ -431,7 +435,8 @@
   <section class="hero">
     <div class="container">
       <h1 class="hero-title">Congratulations!</h1>
-      <div class="hero-subtitle">
+      <!-- Reward subtitle hidden until selection -->
+      <div class="hero-subtitle" id="rewardSubtitle">
         <span class="party-icon">🎉</span>
         <span class="reward-text">$500 Reward Selected</span>
         <span class="party-icon">🎉</span>
@@ -532,6 +537,7 @@
       const selectedText = trigger.querySelector('.selected-text');
       const gate = document.getElementById('countryGate');
       const main = document.getElementById('mainContent');
+      const rewardSubtitle = document.getElementById('rewardSubtitle');
       // Toggle the options list when the trigger is clicked
       trigger.addEventListener('click', function(event) {
         event.stopPropagation();
@@ -554,8 +560,10 @@
           gate.classList.add('hide');
           setTimeout(() => {
             gate.style.display = 'none';
+            // show reward subtitle once a country is selected
+            rewardSubtitle.style.display = 'flex';
             main.style.display = 'block';
-            // trigger fade-in
+            // trigger fade-in for main
             setTimeout(() => {
               main.classList.add('show');
             }, 20);
