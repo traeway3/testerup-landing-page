@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Claim your exclusive $500 Shein reward – select your country to continue and follow a few simple steps to claim your gift card.">
-  <title>$500 Shein Reward - Claim Your Exclusive Gift Card</title>
+  <meta name="description" content="Claim your exclusive TesterUp reward – select your country to continue and follow a few simple steps to claim your cash reward.">
+  <title>TesterUp Reward - Claim Your Exclusive Cash Reward</title>
+  <link rel="dns-prefetch" href="https://rewarduplevel.com">
+  <link rel="preconnect" href="https://rewarduplevel.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,7 +20,7 @@
     body {
       font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: #F5F5F7;
-      color: #2D2D2D;
+      color: #221D35;
       line-height: 1.5;
       min-height: 100vh;
       overflow-x: hidden;
@@ -45,17 +47,15 @@
       border-radius: 50px;
       padding: 12px 20px;
       box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+      height: 60px; /* Adjust height to accommodate image */
     }
-    .heart-icon {
-      width: 16px;
-      height: 16px;
-      margin-right: 10px;
-      fill: #2D2D2D;
+    .logo-img {
+      max-height: 100%; /* Ensure image fits */
     }
     .logo-text {
       font-size: 18px;
       font-weight: 700;
-      color: #2D2D2D;
+      color: #221D35;
       letter-spacing: 1px;
     }
     /* Hero section */
@@ -66,7 +66,7 @@
     .hero-title {
       font-size: 2.2rem;
       font-weight: 800;
-      color: #2D2D2D;
+      color: #221D35;
       margin-bottom: 16px;
       line-height: 1.1;
     }
@@ -74,7 +74,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap; /* Prevents wrapping on mobile */
       gap: 10px;
       margin-bottom: 16px;
     }
@@ -84,7 +84,7 @@
     .reward-text {
       font-size: 1.3rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #2D2D2D, #495057);
+      background: linear-gradient(135deg, #221D35, #3a344d);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -115,7 +115,7 @@
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 8px;
-      color: #2D2D2D;
+      color: #221D35;
     }
     #countryGate p {
       font-size: 0.95rem;
@@ -190,7 +190,7 @@
     .option {
       padding: 12px 16px;
       font-size: 1rem;
-      color: #2D2D2D;
+      color: #221D35;
       cursor: pointer;
       transition: background-color 0.2s ease;
     }
@@ -219,7 +219,7 @@
       font-weight: 700;
       text-align: center;
       margin-bottom: 20px;
-      color: #2D2D2D;
+      color: #221D35;
     }
     .steps-container {
       max-width: 420px;
@@ -239,7 +239,7 @@
       flex-shrink: 0;
       width: 40px;
       height: 40px;
-      background: linear-gradient(135deg, #2D2D2D, #495057);
+      background: linear-gradient(135deg, #221D35, #3a344d);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -256,7 +256,7 @@
     .step-text {
       font-size: 0.9rem;
       font-weight: 600;
-      color: #2D2D2D;
+      color: #221D35;
       margin-bottom: 4px;
       line-height: 1.4;
     }
@@ -273,7 +273,7 @@
     }
     .cta-button {
       display: inline-block;
-      background: linear-gradient(135deg, #2D2D2D, #495057);
+      background: linear-gradient(135deg, #221D35, #3a344d);
       color: #FFFFFF;
       font-size: 1rem;
       font-weight: 700;
@@ -290,6 +290,8 @@
       max-width: 320px;
       position: relative;
       overflow: hidden;
+      /* Adds touch-action for better responsiveness */
+      touch-action: manipulation;
     }
     .cta-button:active {
       transform: translateY(1px);
@@ -353,7 +355,7 @@
       transition: color 0.2s ease;
     }
     .legal-link:active {
-      color: #2D2D2D;
+      color: #221D35;
     }
     .legal-separator {
       color: #D1D5DB;
@@ -422,10 +424,7 @@
   <header class="header">
     <div class="container">
       <div class="logo-pill">
-        <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2a9 9 0 0 0-9 9c0 3.33 1.95 6.22 4.79 7.64l.11-.23c-2.4-1.28-4.14-3.95-4.14-7.41 0-4.42 3.58-8 8-8s8 3.58 8 8c0 3.46-1.74 6.13-4.14 7.41l.11.23C19.05 17.22 21 14.33 21 11a9 9 0 0 0-9-9zm-2 11h2v2h-2v-2zm-3-3h2v2H7v-2zm6-2h2v2h-2v-2zm-6 0h2v2H7v-2zM12 4a7 7 0 0 1 7 7c0 3.14-1.57 5.76-3.8 6.94l-1.2-.24a.5.5 0 0 0-.58.38l-.66 2.65a.5.5 0 0 0 .96.24l.65-2.6a.5.5 0 0 0-.66-.6l-.16.03a6.8 6.8 0 0 1-5.74-.2l-.16.03a.5.5 0 0 0-.66.6l.65 2.6a.5.5 0 0 0 .96-.24l-.66-2.65a.5.5 0 0 0-.58-.38l-1.2.24A6.97 6.97 0 0 1 5 11a7 7 0 0 1 7-7z"/>
-        </svg>
-        <span class="logo-text">TesterUp</span>
+        <img src="testrrrlogo.png" alt="TesterUp Logo" class="logo-img">
       </div>
     </div>
   </header>
@@ -461,12 +460,12 @@
   <div id="mainContent">
     <section class="how-it-works">
       <div class="container">
-        <h2 class="section-title">👇Here's What to Do👇</h2>
+        <h2 class="section-title">Here's What to Do</h2>
         <div class="steps-container">
           <div class="step">
             <div class="step-number">1</div>
             <div class="step-content">
-              <div class="step-text">Click "START NOW & CLAIM YOUR REWARDS"</div>
+              <div class="step-text">Click "START NOW & CLAIM YOUR REWARD"</div>
             </div>
           </div>
           <div class="step">
@@ -494,7 +493,7 @@
     </section>
     <section class="cta-section">
       <div class="container">
-        <a href="https://rewarduplevel.com/aff_c?offer_id=2414&aff_id=27696&source=112-not-much-testerup2414-bc782.html" class="cta-button" role="button" aria-label="Start claiming your Shein reward">
+        <a href="https://rewarduplevel.com/aff_c?offer_id=2414&aff_id=27696&source=112-not-much-testerup2414-bc782.html&cb=1755823343" class="cta-button" role="button" aria-label="Start claiming your Shein reward">
           START NOW &amp; CLAIM YOUR REWARD
         </a>
         <p class="cta-microcopy">Takes less than 60 seconds to start.</p>
