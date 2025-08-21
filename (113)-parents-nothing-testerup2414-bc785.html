@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Make Over $200 Per Day – TesterUp</title>
   <meta name="description" content="Earn money by testing mobile games. Make over $200 per day with TesterUp.">
-  <!-- Import the Poppins font for a clean, modern look -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Preconnect to Google Fonts to improve loading performance (mirrors the optimizations used
+         in the reference Shein page) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Import Poppins for modern typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* Global styles */
+    /* Reset and base styles */
     * {
       box-sizing: border-box;
     }
@@ -16,9 +20,13 @@
       margin: 0;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom right, #ffffff, #f3f4f6);
-      color: #333333;
+      color: #1f2937;
       line-height: 1.4;
+      min-height: 100vh;
+      /* Prevent accidental horizontal scrolling on small screens, matching the reference page */
+      overflow-x: hidden;
     }
+    /* Main container */
     .container {
       max-width: 480px;
       margin: 0 auto;
@@ -31,12 +39,12 @@
       height: auto;
       margin-bottom: 24px;
     }
-    /* Heading and subheading */
+    /* Headings */
     h1 {
       font-size: 2.2rem;
       font-weight: 800;
       margin-bottom: 12px;
-      color: #1f2937;
+      color: #111827;
     }
     p.subtitle {
       font-size: 1.1rem;
@@ -44,7 +52,7 @@
       color: #6b7280;
       margin-bottom: 28px;
     }
-    /* Divider with text */
+    /* Divider with label */
     .divider {
       display: flex;
       align-items: center;
@@ -61,7 +69,7 @@
       background: #fecaca;
       margin: 0 10px;
     }
-    /* Card list */
+    /* Instruction cards */
     .cards {
       display: flex;
       flex-direction: column;
@@ -77,6 +85,7 @@
       border: 1px solid #e5e7eb;
       border-radius: 10px;
       backdrop-filter: blur(4px);
+      text-align: left;
     }
     .card .icon {
       flex-shrink: 0;
@@ -93,25 +102,34 @@
       height: 20px;
       stroke: #ffffff;
     }
+    /* Ensure the heading and subtext within each card share the same left alignment
+       and eliminate any default indentation that might cause misalignment.  */
     .card h3 {
       margin: 0 0 4px;
+      padding: 0;
       font-size: 1rem;
       font-weight: 700;
       color: #111827;
+      text-align: left;
     }
     .card p {
       margin: 0;
+      padding: 0;
       font-size: 0.875rem;
       color: #4b5563;
+      text-align: left;
     }
-    /* Call-to-action button */
+    .card .text {
+      flex: 1;
+      text-align: left;
+    }
+    /* Call-to-action section */
     .cta {
       margin-top: 20px;
     }
     .cta a {
       display: block;
       width: 100%;
-      max-width: 100%;
       padding: 16px;
       border-radius: 9999px;
       background: linear-gradient(90deg, #dc2626, #f97316);
@@ -120,6 +138,10 @@
       font-weight: 700;
       font-size: 1rem;
       transition: background 0.3s ease;
+      touch-action: manipulation;
+      -webkit-touch-callout: none;
+      border: none;
+      cursor: pointer;
     }
     .cta a:hover {
       background: linear-gradient(90deg, #f97316, #dc2626);
@@ -143,61 +165,227 @@
     footer a:hover {
       text-decoration: underline;
     }
+    /* Country selection gate styles */
+    #countryGate {
+      max-width: 480px;
+      margin: 0 auto 32px;
+      text-align: center;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #countryGate.hide {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    #countryGate h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+    #countryGate p {
+      font-size: 0.95rem;
+      color: #6b7280;
+      margin-bottom: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .custom-select {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+      position: relative;
+      user-select: none;
+    }
+    .select-trigger {
+      background-color: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      touch-action: manipulation;
+    }
+    .select-trigger:hover {
+      border-color: #a1a1aa;
+    }
+    .select-trigger.open {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-color: #a1a1aa;
+    }
+    .select-trigger .selected-text {
+      flex: 1;
+      text-align: left;
+    }
+    .select-trigger .arrow {
+      margin-left: 8px;
+      font-size: 0.9rem;
+      transition: transform 0.3s ease;
+      color: #dc2626;
+    }
+    .select-trigger.open .arrow {
+      transform: rotate(180deg);
+    }
+    .options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      border: 1px solid #d1d5db;
+      border-top: none;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.05);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      z-index: 100;
+    }
+    .options.open {
+      max-height: 400px;
+      opacity: 1;
+    }
+    .option {
+      padding: 12px 16px;
+      font-size: 1rem;
+      color: #111827;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .option:hover {
+      background-color: #f5f5f5;
+    }
+    .option.selected {
+      background-color: #dc2626;
+      color: #ffffff;
+    }
+    /* Main content visibility */
+    #mainContent {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    #mainContent.show {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Logo -->
-    <div class="logo">
-      <!-- Use the provided image for the TesterUp logo -->
-      <img src="FEE.png" alt="TesterUp logo">
-    </div>
-    <!-- Main headline -->
-    <h1>Make Over $200 Per Day</h1>
-    <!-- Subtitle -->
-    <p class="subtitle">Follow the instructions to start earning today</p>
-    <!-- Divider with “Quick Start” label -->
-    <div class="divider"><span class="line"></span>QUICK START<span class="line"></span></div>
-    <!-- Instruction cards -->
-    <div class="cards">
-      <div class="card">
-        <div class="icon">
-          <!-- Check mark icon -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="text">
-          <h3>Download the TesterUp app</h3>
-          <p>Get started with the app</p>
-        </div>
+  <!-- Country gate -->
+  <div id="countryGate">
+    <h2>Select your country to continue</h2>
+    <p>This helps us show the right eligibility details.</p>
+    <div class="custom-select" id="customSelect">
+      <div class="select-trigger" id="selectTrigger">
+        <span class="selected-text">Select your country</span>
+        <span class="arrow">▼</span>
       </div>
-      <div class="card">
-        <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="text">
-          <h3>Earn More by Testing Multiple Games</h3>
-          <p>Earn up to $200-$500/day</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="text">
-          <h3>Pro tip: Make in-app purchases on the games to earn faster</h3>
-          <p>They reimburse you for anything you spend!</p>
-        </div>
-      </div>
+      <ul class="options" id="selectOptions">
+        <li class="option" data-value="US">United States</li>
+        <li class="option" data-value="CA">Canada</li>
+        <li class="option" data-value="AU">Australia</li>
+        <li class="option" data-value="UK">United Kingdom</li>
+      </ul>
     </div>
-    <!-- Call-to-action button -->
-    <div class="cta">
-      <a href="https://rewarduplevel.com/aff_c?offer_id=2414&aff_id=27696&source=113-parents-nothing-testerup2414-bc785" aria-label="Start earning with TesterUp">START EARNING NOW</a>
-      <p class="microcopy">Takes less than 60 seconds to start.</p>
-    </div>
-    <!-- Footer -->
-    <footer>
-      <a href="#">Terms &amp; Conditions</a> • <a href="#">Privacy Policy</a>
-    </footer>
   </div>
+  <!-- Main content hidden until country selected -->
+  <div id="mainContent">
+    <div class="container">
+      <div class="logo">
+        <img src="FEE.png" alt="TesterUp logo">
+      </div>
+      <h1>Make Over $200 Per Day</h1>
+      <p class="subtitle">Follow the instructions to start earning today</p>
+      <div class="divider"><span class="line"></span>QUICK START<span class="line"></span></div>
+      <div class="cards">
+        <div class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="text">
+            <h3>Download the TesterUp app</h3>
+            <p>Get started with the app</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="text">
+            <h3>Earn More by Testing Multiple Games</h3>
+            <p>Earn up to $200-$500/day</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="text">
+            <h3>Pro tip: Make in-app purchases on the games to earn faster</h3>
+            <p>They reimburse you for anything you spend!</p>
+          </div>
+        </div>
+      </div>
+      <div class="cta">
+        <a href="https://rewarduplevel.com/aff_c?offer_id=2414&aff_id=27696&source=113-parents-nothing-testerup2414-bc785" rel="noopener noreferrer" aria-label="Start earning with TesterUp">START EARNING NOW</a>
+        <p class="microcopy">Takes less than 60 seconds to start.</p>
+      </div>
+      <footer>
+        <a href="#" rel="noopener noreferrer">Terms &amp; Conditions</a> • <a href="#" rel="noopener noreferrer">Privacy Policy</a>
+      </footer>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const trigger = document.getElementById('selectTrigger');
+      const options = document.getElementById('selectOptions');
+      const selectedText = trigger.querySelector('.selected-text');
+      const gate = document.getElementById('countryGate');
+      const main = document.getElementById('mainContent');
+      // Toggle dropdown open/close
+      trigger.addEventListener('click', function(event) {
+        event.stopPropagation();
+        trigger.classList.toggle('open');
+        options.classList.toggle('open');
+      });
+      // Handle option selection
+      options.addEventListener('click', function(event) {
+        const optionEl = event.target.closest('.option');
+        if (optionEl) {
+          options.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+          optionEl.classList.add('selected');
+          selectedText.textContent = optionEl.textContent;
+          trigger.classList.remove('open');
+          options.classList.remove('open');
+          // Fade out gate and show main content
+          gate.classList.add('hide');
+          setTimeout(() => {
+            gate.style.display = 'none';
+            main.style.display = 'block';
+            setTimeout(() => {
+              main.classList.add('show');
+            }, 20);
+          }, 400);
+        }
+      });
+      // Close dropdown if clicking outside
+      document.addEventListener('click', function(event) {
+        if (!trigger.contains(event.target) && !options.contains(event.target)) {
+          trigger.classList.remove('open');
+          options.classList.remove('open');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
