@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete a few simple steps to get paid for testing new apps and games.">
+  <title>HOW IT WORKS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Canva+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Canva Sans', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #FFFFFF;
+      overflow-x: hidden;
+      touch-action: manipulation;
+    }
+    .top-section {
+      background: url('(2)testeruppbackground.png?v=114') no-repeat center center;
+      background-size: cover;
+      width: 100vw;
+      height: auto;
+      padding: 30px 0;
+    }
+    .card-image {
+      max-width: 70%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .main-content {
+      background: transparent;
+      padding: 10px;
+      margin: 0 auto;
+      max-width: 90%;
+    }
+    h1 span {
+      color: #DB1C15;
+      font-weight: bold;
+    }
+    .steps {
+      text-align: center;
+      max-width: 400px;
+      margin: 5px auto;
+    }
+    .steps ol {
+      padding-left: 0;
+      list-style-position: inside;
+    }
+    .steps ol li {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 5px 0;
+      color: #000000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .steps ol li::marker {
+      color: #DB1C15;
+      font-weight: bold;
+    }
+    .cta-btn {
+      display: none;
+      width: 90%;
+      margin: 5px auto;
+      background: #DB1C15;
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: bold;
+      padding: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    .cta-btn:hover {
+      background: #a81310;
+    }
+    .location-section {
+      margin-top: 5px;
+    }
+    .location-btn {
+      display: block;
+      width: 90%;
+      margin: 5px auto;
+      background: #DB1C15;
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: bold;
+      padding: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    .location-btn:hover {
+      background: #a81310;
+    }
+    .thank-you {
+      display: none;
+      margin-top: 5px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .footer {
+      margin-top: 50px;
+      padding: 5px;
+      background: #ffffff;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+    .footer hr {
+      width: 90%;
+      border: 1px solid black;
+      margin: 20px auto 10px auto;
+    }
+  </style>
+  <script>
+    function showThankYou() {
+      document.querySelector('.location-section').style.display = 'none';
+      document.querySelector('.thank-you').style.display = 'block';
+      document.querySelector('.cta-btn').style.display = 'block';
+
+      const firstStep = document.querySelectorAll('.steps ol li')[0];
+      if (firstStep) {
+        firstStep.textContent = 'Download the Testerup app';
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="top-section">
+    <img src="(2)testerupplogo.png?v=114" alt="Cash Gift Card Image" class="card-image">
+  </div>
+
+  <div class="main-content">
+    <h1>HOW IT WORKS</h1>
+
+    <div class="steps">
+      <ol>
+        <li>Choose A Region Below📍</li>
+        <li>Sign Up and Play 3-5 Games to Start<br>Earning <span style="color:#DB1C15;">(IMPORTANT)</span>🚨</li>
+        <li>Cash out and Repeat💸</li>
+      </ol>
+    </div>
+
+    <div class="location-section">
+      <button class="location-btn" onclick="showThankYou()">United States</button>
+      <button class="location-btn" onclick="showThankYou()">Canada</button>
+    </div>
+
+    <div class="thank-you">
+      <h2>Thank you! Click below to start earning👇</h2>
+      <a href="https://rewarduplevel.com/aff_c?offer_id=1897&aff_id=27696&source=115-whole-wage-swag1897-bc787" class="cta-btn" role="button" aria-label="Start earning now">START EARNING NOW!</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <hr>
+    <p style="text-align:center;">HUGE TIP: THE MORE GAMES YOU COMPLETE, THE MORE YOU EARN!</p>
+    <p>COPYRIGHT 2024 ©</p>
+  </div>
+</body>
+</html>
