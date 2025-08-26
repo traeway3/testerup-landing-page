@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Prevent phone numbers from being auto-linked on iOS -->
+  <meta name="format-detection" content="telephone=no">
+  <title>GET STARTED</title>
+  <!-- Preconnects improve font loading performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Using DM Sans for a clean, modern appearance with swap and fallbacks -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Basic resets and mobile-friendly defaults */
+    html, body {
+      margin: 0;
+      padding: 0;
+      /* Use DM Sans with a system fallback stack to avoid invisible text flashes */
+      font-family: 'DM Sans', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color: #000;
+      background-color: #D4D4D4;
+      text-align: center;
+      overflow-x: hidden;
+      touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+      /* Ensure the page always takes up the full viewport height so the dropdown has room to expand */
+      min-height: 100vh;
+    }
+
+    /* Wrapper centers content and sets a comfortable max width */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Hero image styling; a cache-busting query parameter helps avoid stale assets */
+    .header-img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Main headings adjust based on screen width */
+    .headline {
+      font-size: calc(24px + 6 * ((100vw - 320px) / 960));
+      line-height: 1.4;
+      margin: 20px 0 10px;
+    }
+    .subhead {
+      font-size: calc(22px + 6 * ((100vw - 320px) / 960));
+      line-height: 1.2;
+      margin: 10px 0;
+    }
+
+    /* Steps container and text styling */
+    .steps {
+      margin: 15px 0;
+    }
+    .steps p,
+    .steps h3 {
+      margin: 6px 0;
+      font-size: calc(20px + 6 * ((100vw - 320px) / 960));
+      font-weight: 700;
+      /* Allow normal wrapping instead of forcing a single line on small screens */
+      white-space: normal;
+    }
+
+    /* Call-to-action button using an anchor; plain anchors improve reliability */
+    .cta-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 40px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background-color: #000000;
+      border: 2px solid #000000;
+      border-radius: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+      touch-action: manipulation;
+      user-select: none;
+    }
+    .cta-btn:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+
+    /* Small footer text */
+    .footer {
+      margin-top: 25px;
+    }
+    .footer p {
+      font-size: 9px;
+      color: #000000;
+    }
+
+    /* On large screens adjust font sizes more generously */
+    @media (min-width: 1024px) {
+      .headline,
+      .subhead {
+        font-size: 28px;
+      }
+      .steps p,
+      .steps h3 {
+        font-size: 26px;
+      }
+    }
+
+    /* Country selection gate styles */
+    #countryGate {
+      max-width: 600px;
+      /* Add top margin so the dropdown has room to display both options without page scrolling */
+      margin: 70px auto 20px;
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #D4D4D4;
+      border-radius: 20px;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    #countryGate.hide {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    #countryGate h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #000000;
+    }
+    #countryGate p {
+      font-size: 16px;
+      color: #4A5568;
+      margin-bottom: 20px;
+    }
+    .custom-select {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+      position: relative;
+      user-select: none;
+    }
+    .select-trigger {
+      background-color: #FFFFFF;
+      border: 2px solid #000000;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 18px;
+      color: #6B7280;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .select-trigger:hover {
+      border-color: #4A5568;
+    }
+    .select-trigger.open {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .select-trigger .arrow {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+      font-size: 0.9rem;
+      color: #000000;
+    }
+    .select-trigger.open .arrow {
+      transform: rotate(180deg);
+    }
+    .options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #FFFFFF;
+      border: 2px solid #000000;
+      border-top: none;
+      border-bottom-left-radius: 14px;
+      border-bottom-right-radius: 14px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      z-index: 10;
+    }
+    .options.open {
+      max-height: 300px;
+      opacity: 1;
+    }
+    .option {
+      padding: 12px 16px;
+      font-size: 18px;
+      color: #000000;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .option:hover {
+      background-color: #F5F5F5;
+    }
+    .option.selected {
+      background-color: #000000;
+      color: #FFFFFF;
+    }
+    /* Hide main content until a country is selected */
+    #mainContent {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    #mainContent.show {
+      opacity: 1;
+    }
+    /* Visible focus ring for accessibility */
+    .cta-btn:focus-visible {
+      outline: 3px solid #000000;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Country selection gate: prompts the user to pick their country before showing main content -->
+  <div id="countryGate">
+    <h2>Select your country to continue</h2>
+    <p>This helps us show the right eligibility details.</p>
+    <div class="custom-select">
+      <div id="selectTrigger" class="select-trigger">
+        <span class="selected-text">Select your country</span>
+        <span class="arrow">▾</span>
+      </div>
+      <div id="selectOptions" class="options">
+        <div class="option" data-country="US">United States</div>
+        <div class="option" data-country="CA">Canada</div>
+      </div>
+    </div>
+  </div>
+  <!-- Main content hidden until a country is selected -->
+  <div id="mainContent">
+    <div class="container">
+      <!-- Top promotional image with cache-busting parameter -->
+      <img src="testrrrucrd.png?v=1" alt="Screenshot showing $200 Daily Testing Games reward" class="header-img" width="1365" height="768">
+
+      <!-- Introductory headline explaining the process -->
+      <div class="headline">
+        <strong>Here's how I got the Rewards</strong>, <strong>follow these steps to get YOURS!</strong>
+      </div>
+
+      <!-- Subheading with decorative arrows -->
+      <div class="subhead">
+        <strong>↓ HERE'S WHAT TO DO ↓</strong>
+      </div>
+
+      <!-- Step-by-step instructions for the user -->
+      <div class="steps">
+        <h3><strong>1. Click "GET STARTED!"</strong></h3>
+        <p><strong>2. Download the app and Register!</strong></p>
+        <p><strong>3. Play the recommended Games!</strong></p>
+        <h3><strong>4. Cash Out!!!</strong></h3>
+      </div>
+
+      <!-- Call-to-action button linking to the offer; updated affiliate link -->
+      <a href="https://rewarduplevel.com/aff_c?offer_id=2414&aff_id=27696&source=120-dance-if-testerup2414-bc794" class="cta-btn" role="button" aria-label="Start your earnings journey" target="_blank" rel="nofollow noopener noreferrer">GET STARTED!</a>
+
+      <!-- Footer with a simple copyright notice -->
+      <div class="footer">
+        <p>©, All rights reserved</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const trigger = document.getElementById('selectTrigger');
+      const options = document.getElementById('selectOptions');
+      const selectedText = trigger.querySelector('.selected-text');
+      const gate = document.getElementById('countryGate');
+      const main = document.getElementById('mainContent');
+      let selectedCountry = '';
+      // Toggle the options dropdown when the trigger is clicked
+      trigger.addEventListener('click', function (event) {
+        event.stopPropagation();
+        trigger.classList.toggle('open');
+        options.classList.toggle('open');
+      });
+      // Handle option selection
+      options.addEventListener('click', function (event) {
+        const optionEl = event.target.closest('.option');
+        if (optionEl) {
+          // Remove previous selection highlight
+          options.querySelectorAll('.option').forEach(function (opt) {
+            opt.classList.remove('selected');
+          });
+          // Highlight the new selection
+          optionEl.classList.add('selected');
+          selectedCountry = optionEl.dataset.country || '';
+          selectedText.textContent = optionEl.textContent;
+          // Close the dropdown
+          trigger.classList.remove('open');
+          options.classList.remove('open');
+          // Fade out the gate and reveal main content after the transition
+          gate.classList.add('hide');
+          setTimeout(function () {
+            gate.style.display = 'none';
+            main.style.display = 'block';
+            // Trigger fade-in of the main content
+            main.classList.add('show');
+          }, 500);
+        }
+      });
+      // Close dropdown if clicking outside
+      document.addEventListener('click', function (event) {
+        if (!trigger.contains(event.target) && !options.contains(event.target)) {
+          trigger.classList.remove('open');
+          options.classList.remove('open');
+        }
+      });
+      // Analytics and dynamic link parameters
+      const cta = document.querySelector('.cta-btn');
+      cta.addEventListener('click', function () {
+        try {
+          const url = new URL(cta.href);
+          const params = url.searchParams;
+          const timestamp = Date.now();
+          params.set('cb', timestamp.toString());
+          params.set('sub_id1', 'platform');
+          params.set('sub_id2', 'adset');
+          if (selectedCountry) {
+            params.set('country', selectedCountry);
+          }
+          url.search = params.toString();
+          cta.href = url.toString();
+        } catch (e) {
+          // In older browsers, fallback to appending query string directly
+          var link = cta.getAttribute('href');
+          var separator = link.indexOf('?') !== -1 ? '&' : '?';
+          var newParams = 'cb=' + Date.now() + '&sub_id1=platform&sub_id2=adset';
+          if (selectedCountry) {
+            newParams += '&country=' + encodeURIComponent(selectedCountry);
+          }
+          cta.setAttribute('href', link + separator + newParams);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
