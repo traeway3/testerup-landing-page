@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Prevent phone numbers from being auto-linked on iOS -->
+  <meta name="format-detection" content="telephone=no">
+  <title>GET STARTED</title>
+  <!-- Preconnects improve font loading performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Using DM Sans for a clean, modern appearance -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Basic resets and mobile-friendly defaults */
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'DM Sans', sans-serif;
+      color: #000;
+      background-color: #D4D4D4;
+      text-align: center;
+      overflow-x: hidden;
+      touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* Wrapper centers content and sets a comfortable max width */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Hero image styling; a cache-busting query parameter helps avoid stale assets */
+    .header-img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Main headings adjust based on screen width */
+    .headline {
+      font-size: calc(24px + 6 * ((100vw - 320px) / 960));
+      line-height: 1.4;
+      margin: 20px 0 10px;
+    }
+    .subhead {
+      font-size: calc(22px + 6 * ((100vw - 320px) / 960));
+      line-height: 1.2;
+      margin: 10px 0;
+    }
+
+    /* Steps container and text styling */
+    .steps {
+      margin: 15px 0;
+    }
+    .steps p,
+    .steps h3 {
+      margin: 6px 0;
+      font-size: calc(20px + 6 * ((100vw - 320px) / 960));
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* Call-to-action button using an anchor; plain anchors improve reliability */
+    .cta-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 40px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background-color: #000000;
+      border: 2px solid #000000;
+      border-radius: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+      touch-action: manipulation;
+      user-select: none;
+    }
+    .cta-btn:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+
+    /* Small footer text */
+    .footer {
+      margin-top: 25px;
+    }
+    .footer p {
+      font-size: 9px;
+      color: #000000;
+    }
+
+    /* On large screens clamp font size */
+    @media (min-width: 1024px) {
+      .headline,
+      .subhead,
+      .steps p,
+      .steps h3 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top promotional image with cache-busting parameter -->
+    <img src="1755218039-image.png?v=1" alt="Rewards teaser image" class="header-img">
+
+    <!-- Introductory headline explaining the process -->
+    <div class="headline">
+      <strong>Here's how I got the Rewards</strong>, <strong>follow these steps to get YOURS!</strong>
+    </div>
+
+    <!-- Subheading with decorative arrows -->
+    <div class="subhead">
+      <strong>↓ HERE'S WHAT TO DO ↓</strong>
+    </div>
+
+    <!-- Step-by-step instructions for the user -->
+    <div class="steps">
+      <h3><strong>1. Click "GET STARTED!"</strong></h3>
+      <p><strong>2. Download the app and Register!</strong></p>
+      <p><strong>3. Play the recommended Games!</strong></p>
+      <h3><strong>4. Cash Out!!!</strong></h3>
+    </div>
+
+    <!-- Call-to-action button linking to the offer; updated affiliate link -->
+    <a href="https://rewarduplevel.com/aff_c?offer_id=2691&aff_id=27696&source=117-payd-wage-playful2691-bc790" class="cta-btn" role="button" aria-label="Start your earnings journey">GET STARTED!</a>
+
+    <!-- Footer with a simple copyright notice -->
+    <div class="footer">
+      <p>©, All rights reserved</p>
+    </div>
+  </div>
+</body>
+</html>
