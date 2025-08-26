@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Prevent phone numbers from being auto-linked on iOS -->
-  <meta name="format-detection" content="telephone=no">
-  <title>GET STARTED</title>
-  <!-- Preconnects improve font loading performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Using DM Sans for a clean, modern appearance -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Prevent phone numbers from being auto-linked on iOS -->
+<meta content="telephone=no" name="format-detection"/>
+<title>GET STARTED</title>
+<!-- Preconnects improve font loading performance -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<!-- Using DM Sans for a clean, modern appearance -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
     /* Basic resets and mobile-friendly defaults */
     html, body {
       margin: 0;
@@ -106,37 +107,133 @@
       }
     }
   </style>
-</head>
-<body>
-  <div class="container">
-    <!-- Top promotional image with cache-busting parameter -->
-    <img src="1755218039-image.png?v=1" alt="Rewards teaser image" class="header-img">
+<style>
+/* === Enhancements (non-visual behavior or subtle visual parity) === */
+:root { --focus: 2px solid #111; }
+:where(a, button, [role="button"]):focus-visible { outline: var(--focus); outline-offset: 3px; }
+a.button:hover, a.button:focus-visible { filter: brightness(1.05); }
 
-    <!-- Introductory headline explaining the process -->
-    <div class="headline">
-      <strong>Here's how I got the Rewards</strong>, <strong>follow these steps to get YOURS!</strong>
-    </div>
+/* Step 6: Tweaked desktop typography (avoid shrinking to 18px) */
+@media (min-width: 1024px) {
+  .headline { font-size: clamp(28px, 4vw, 40px); }
+  .subhead { font-size: clamp(16px, 2.1vw, 22px); }
+  .steps h3 { font-size: clamp(18px, 1.8vw, 24px); }
+  .steps p { font-size: clamp(14px, 1.4vw, 18px); }
+}
 
-    <!-- Subheading with decorative arrows -->
-    <div class="subhead">
-      <strong>↓ HERE'S WHAT TO DO ↓</strong>
-    </div>
+/* Step 7: Avoid nowrap overflow in steps */
+.steps h3, .steps p { white-space: normal !important; }
 
-    <!-- Step-by-step instructions for the user -->
-    <div class="steps">
-      <h3><strong>1. Click "GET STARTED!"</strong></h3>
-      <p><strong>2. Download the app and Register!</strong></p>
-      <p><strong>3. Play the recommended Games!</strong></p>
-      <h3><strong>4. Cash Out!!!</strong></h3>
-    </div>
+/* Button tap target */
+a[role="button"], .btn, .button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
 
-    <!-- Call-to-action button linking to the offer; updated affiliate link -->
-    <a href="https://rewarduplevel.com/aff_c?offer_id=2691&aff_id=27696&source=117-payd-wage-playful2691-bc790" class="cta-btn" role="button" aria-label="Start your earnings journey">GET STARTED!</a>
+/* Image hygiene (prevent layout shift) */
+img { height: auto; }
+</style><meta content="Simple 4‑step flow to claim rewards. Select your country, follow quick steps, and cash out." name="description"/><meta content="Claim Your Reward" property="og:title"/><meta content="Select United States or Canada to see eligibility and start." property="og:description"/><meta content="summary_large_image" name="twitter:card"/><style>
+/* Country selection gate (dropdown-style) */
+#countryGate{max-width:420px;margin:0 auto 32px;text-align:center;transition:opacity .4s ease,transform .4s ease;padding:16px}
+#countryGate.hide{opacity:0;transform:translateY(-20px)}
+#countryGate h2{font-size:1.3rem;font-weight:800;margin-bottom:8px;color:#111}
+#countryGate p{font-size:.95rem;color:#6b7280;margin-bottom:16px;font-weight:500;line-height:1.4}
+.custom-select{width:100%;max-width:340px;margin:0 auto;position:relative;user-select:none}
+.select-trigger{background:#fff;border:1px solid #d1d5db;border-radius:12px;padding:14px 16px;font-size:1rem;color:#6b7280;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease}
+.select-trigger:hover{border-color:#a1a1aa}
+.select-trigger.open{border-bottom-left-radius:0;border-bottom-right-radius:0;border-color:#a1a1aa}
+.select-trigger .arrow{margin-left:8px;font-size:.9rem;transition:transform .3s ease}
+.select-trigger.open .arrow{transform:rotate(180deg)}
+.options{position:absolute;top:100%;left:0;width:100%;background:#fff;border:1px solid #d1d5db;border-top:none;border-bottom-left-radius:12px;border-bottom-right-radius:12px;box-shadow:0 8px 12px rgba(0,0,0,.05);list-style:none;padding:0;margin:0;max-height:0;overflow:hidden;opacity:0;transition:max-height .3s ease,opacity .3s ease;z-index:100}
+.options.open{max-height:240px;opacity:1}
+.option{padding:12px 16px;font-size:1rem;color:#111;cursor:pointer;transition:background-color .2s ease}
+.option:hover{background:#f5f5f7}
+.option.selected{background:#111;color:#fff}
+/* main reveals */
+#mainContent.show{opacity:1}
+</style><script>
+document.addEventListener('DOMContentLoaded', function () {
+  var trigger = document.getElementById('selectTrigger');
+  var options = document.getElementById('selectOptions');
+  var selectedText = trigger.querySelector('.selected-text');
+  var gate = document.getElementById('countryGate');
+  var main = document.getElementById('mainContent');
+  var country = null;
 
-    <!-- Footer with a simple copyright notice -->
-    <div class="footer">
-      <p>©, All rights reserved</p>
-    </div>
-  </div>
-</body>
+  function enrichUrl(url, params){
+    try{
+      var u = new URL(url, window.location.href);
+      Object.keys(params).forEach(function(k){ if(params[k]!==undefined && params[k]!==null) u.searchParams.set(k, params[k]); });
+      return u.toString();
+    }catch(e){ return url; }
+  }
+  function applyToCTAs(){
+    var cb = Date.now();
+    var platform = (/(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent)) ? 'mobile' : 'desktop';
+    var adset = (document.referrer||'').includes('tiktok') ? 'tiktok' : 'web';
+    document.querySelectorAll('a[role="button"], a.btn, a.button, a[href*="http"]').forEach(function(a){
+      if(!a.href) return;
+      var href = a.getAttribute('href');
+      href = href.replace('{CB}', cb).replace('{PLATFORM}', platform).replace('{ADSET}', adset);
+      href = enrichUrl(href, {country: country, cb: cb, sub_id1: platform, sub_id2: adset});
+      a.setAttribute('href', href);
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'nofollow noopener noreferrer');
+    });
+  }
+
+  trigger.addEventListener('click', function(e){
+    e.stopPropagation();
+    trigger.classList.toggle('open');
+    options.classList.toggle('open');
+  });
+  options.addEventListener('click', function(e){
+    var opt = e.target.closest('.option');
+    if(!opt) return;
+    options.querySelectorAll('.option').forEach(function(o){o.classList.remove('selected');});
+    opt.classList.add('selected');
+    selectedText.textContent = opt.textContent;
+    country = opt.getAttribute('data-value');
+    trigger.classList.remove('open');
+    options.classList.remove('open');
+    // fade gate out, reveal content
+    gate.classList.add('hide');
+    setTimeout(function(){
+      gate.style.display = 'none';
+      main.style.display = 'block';
+      setTimeout(function(){ main.classList.add('show'); }, 20);
+      applyToCTAs();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }, 400);
+  });
+  document.addEventListener('click', function(e){
+    if (!trigger.contains(e.target) && !options.contains(e.target)) {
+      trigger.classList.remove('open');
+      options.classList.remove('open');
+    }
+  });
+});
+</script></head>
+<body style="font-family:'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif"><div id="countryGate"><h2>Select your country to continue</h2><p>This helps us show the right eligibility details.</p><div class="custom-select" id="customSelect"><div class="select-trigger" id="selectTrigger"><span class="selected-text">Select your country</span><span class="arrow">▼</span></div><ul class="options" id="selectOptions"><li class="option" data-value="US">United States</li><li class="option" data-value="CA">Canada</li></ul></div></div><div aria-hidden="true" id="mainContent" style="display:none;opacity:0;transition:opacity .5s ease;"><div class="container">
+<!-- Top promotional image with cache-busting parameter -->
+<img alt="Rewards offer card with payout methods" class="header-img" height="1080" src="testrrru%20crd.png" width="1920"/>
+<!-- Introductory headline explaining the process -->
+<div class="headline">
+<strong>Here's how I got the Rewards</strong>, <strong>follow these steps to get YOURS!</strong>
+</div>
+<!-- Subheading with decorative arrows -->
+<div class="subhead">
+<strong>↓ HERE'S WHAT TO DO ↓</strong>
+</div>
+<!-- Step-by-step instructions for the user -->
+<div class="steps">
+<h3><strong>1. Click "GET STARTED!"</strong></h3>
+<p><strong>2. Download the app and Register!</strong></p>
+<p><strong>3. Play the recommended Games!</strong></p>
+<h3><strong>4. Cash Out!!!</strong></h3>
+</div>
+<!-- Call-to-action button linking to the offer; updated affiliate link -->
+<a aria-label="Start your earnings journey" class="cta-btn" href="https://rewarduplevel.com/aff_c?offer_id=2691&amp;aff_id=27696&amp;source=117-payd-wage-playful2691-bc790&amp;cb={CB}&amp;sub_id1={PLATFORM}&amp;sub_id2={ADSET}" rel="nofollow noopener noreferrer" role="button" target="_blank">GET STARTED!</a>
+<!-- Footer with a simple copyright notice -->
+<div class="footer">
+<p>©, All rights reserved</p>
+</div>
+</div></div></body>
 </html>
