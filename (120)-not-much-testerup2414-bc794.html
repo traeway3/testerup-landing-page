@@ -9,10 +9,9 @@
   <!-- Preconnects improve font loading performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Preconnect/DNS-prefetch for the affiliate network and app stores to speed up initial redirects -->
+  <!-- Preconnect/DNS-prefetch for affiliate network and app stores to speed up initial redirects -->
   <link rel="preconnect" href="https://rewarduplevel.com">
   <link rel="dns-prefetch" href="https://rewarduplevel.com">
-  <!-- Preconnect to the main app stores (if user moves on to download) -->
   <link rel="preconnect" href="https://play.google.com">
   <link rel="dns-prefetch" href="https://play.google.com">
   <link rel="preconnect" href="https://apps.apple.com">
@@ -75,7 +74,10 @@
 
     /* Call-to-action button using an anchor; plain anchors improve reliability */
     .cta-btn {
-      display: inline-block;
+      /* Use flexbox to center text vertically within the button */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       margin-top: 20px;
       padding: 12px 40px;
       font-size: 22px;
@@ -89,11 +91,12 @@
       transition: background-color 0.2s, color 0.2s;
       touch-action: manipulation;
       user-select: none;
-      /* Improve first-tap reliability on mobile webviews */
+      /* Additional iOS-specific selectors to improve tap reliability */
       -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
-      /* Ensure a minimum height for comfortable tap targets */
+      /* Ensure a comfortable minimum height and consistent vertical centering */
       min-height: 48px;
+      line-height: normal;
     }
     .cta-btn:hover {
       background-color: #FFFFFF;
