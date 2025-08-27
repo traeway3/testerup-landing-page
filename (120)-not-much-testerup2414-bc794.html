@@ -9,6 +9,14 @@
   <!-- Preconnects improve font loading performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preconnect/DNS-prefetch for the affiliate network and app stores to speed up initial redirects -->
+  <link rel="preconnect" href="https://rewarduplevel.com">
+  <link rel="dns-prefetch" href="https://rewarduplevel.com">
+  <!-- Preconnect to the main app stores (if user moves on to download) -->
+  <link rel="preconnect" href="https://play.google.com">
+  <link rel="dns-prefetch" href="https://play.google.com">
+  <link rel="preconnect" href="https://apps.apple.com">
+  <link rel="dns-prefetch" href="https://apps.apple.com">
   <!-- Using DM Sans for a clean, modern appearance -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -81,6 +89,11 @@
       transition: background-color 0.2s, color 0.2s;
       touch-action: manipulation;
       user-select: none;
+      /* Improve first-tap reliability on mobile webviews */
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      /* Ensure a minimum height for comfortable tap targets */
+      min-height: 48px;
     }
     .cta-btn:hover {
       background-color: #FFFFFF;
@@ -110,7 +123,7 @@
 <body>
   <div class="container">
     <!-- Top promotional image with cache-busting parameter -->
-    <img src="1755218039-image.png?v=1" alt="Rewards teaser image" class="header-img">
+    <img src="plyyflcrd.png?v=1" alt="Rewards teaser image" class="header-img">
 
     <!-- Introductory headline explaining the process -->
     <div class="headline">
@@ -131,7 +144,7 @@
     </div>
 
     <!-- Call-to-action button linking to the offer; updated affiliate link -->
-    <a href="https://rewarduplevel.com/aff_c?offer_id=2414&aff_id=27696&source=120-not-much-testerup2414-bc794" class="cta-btn" role="button" aria-label="Start your earnings journey">GET STARTED!</a>
+    <a href="https://rewarduplevel.com/aff_c?offer_id=2414&aff_id=27696&source=120-not-much-testerup2414-bc794&cb=1" class="cta-btn" role="button" aria-label="Start your earnings journey">GET STARTED!</a>
 
     <!-- Footer with a simple copyright notice -->
     <div class="footer">
