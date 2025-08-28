@@ -70,7 +70,7 @@
     /* ----- Pre-lander gate ----- */
     .gate-wrap{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:22px}
     .gate{max-width:560px;width:100%;background:#fff;border-radius:20px;padding:22px;
-          box-shadow:0 10px 28px rgba(0,0,0,.12)}
+          box-shadow:0 10px 28px rgba(0,0,0,.12);will-change:opacity,transform}
     .gate h1{font-size:clamp(22px,5vw,28px);margin:0 0 12px;font-weight:800}
     .gate p{margin:0 0 16px;font-size:clamp(16px,4vw,18px)}
     .pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
@@ -86,8 +86,12 @@
     }
 
     .hidden{display:none !important}
-    .fade-in{animation:fade .22s ease-out both}
-    @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+    /* smoother/slower transitions */
+    .fade-in{animation:fadeIn .45s ease-out both}
+    .fade-out{animation:fadeOut .35s ease-in both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    @keyframes fadeOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-6px)}}
 
     .gate-note{font-size:12px;color:#333;margin-top:12px;opacity:.8}
   </style>
@@ -135,43 +139,43 @@
 
   <script>
     (function(){
-      const gateRoot = document.getElementById('gateRoot');
+      const gateWrap = document.getElementById('gateRoot');
+      const gateCard = gateWrap.querySelector('.gate');
       const main = document.getElementById('mainContent');
       const cta = document.getElementById('cta');
 
-      // If user already chose a device in this tab, skip gate
-      const saved = sessionStorage.getItem('deviceChoice');
-      if(saved){
-        applyChoice(saved);
-        return;
-      }
+      // Ensure older versions' storage doesn't auto-skip the gate
+      try { sessionStorage.removeItem('deviceChoice'); } catch(_) {}
 
       // Wire up pills
-      gateRoot.addEventListener('click', function(e){
+      gateWrap.addEventListener('click', function(e){
         const btn = e.target.closest('.pill');
         if(!btn) return;
         const choice = btn.dataset.device; // 'iphone' | 'android'
-        // affordance: mark as selected briefly
+        // visual selection
         document.querySelectorAll('.pill').forEach(b => {
           b.classList.toggle('selected', b === btn);
           b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
         });
-        applyChoice(choice);
-      }, { passive:true });
+        // Smooth transition: fade out gate, then show content with fade in
+        gateCard.classList.remove('fade-in');
+        gateCard.classList.add('fade-out');
 
-      function applyChoice(choice){
-        try { sessionStorage.setItem('deviceChoice', choice); } catch(_) {}
-        // Append device to CTA querystring without duplicating
+        // Append device to CTA querystring (no duplication)
         if(cta && cta.href){
-          const url = new URL(cta.href);
+          const url = new URL(cta.href, location.href);
           url.searchParams.set('device', choice);
           cta.href = url.toString();
         }
-        // Reveal main content
-        gateRoot.classList.add('hidden');
-        main.classList.remove('hidden');
-        main.classList.add('fade-in');
-      }
+
+        // After animation completes, hide gate and reveal main
+        gateCard.addEventListener('animationend', function onEnd(){
+          gateCard.removeEventListener('animationend', onEnd);
+          gateWrap.classList.add('hidden');
+          main.classList.remove('hidden');
+          main.classList.add('fade-in');
+        }, { once:true });
+      }, { passive:true });
     })();
   </script>
 </body>
