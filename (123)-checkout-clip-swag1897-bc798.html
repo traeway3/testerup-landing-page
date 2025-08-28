@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Get Rewards — Start Now</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#D4D4D4;
+      --text:#000;
+      --cta:#67B6D4;      /* Swagbucks blue */
+      --ctaText:#fff;
+      --ctaFocus:#2b8eb5;
+    }
+
+    html,body{
+      margin:0;padding:0;
+      font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);background:var(--bg);text-align:center;
+      -webkit-text-size-adjust:100%;touch-action:manipulation;overflow-x:hidden;
+    }
+    .container{max-width:600px;margin:0 auto;padding:20px}
+
+    .header-img{width:100%;height:auto;border-radius:20px;display:block;object-fit:cover}
+
+    .headline{font-size:clamp(24px,5.5vw,34px);line-height:1.25;margin:18px 0 8px;font-weight:700}
+    .subhead{font-size:clamp(18px,4.8vw,26px);line-height:1.2;margin:6px 0 10px;font-weight:700}
+
+    /* FIX: allow wrapping + safe breaking */
+    .steps{margin:14px 0;padding:0 6px}
+    .steps p{
+      margin:10px 0;
+      font-size:clamp(18px,4.6vw,24px);
+      font-weight:700;
+      white-space:normal;          /* was nowrap — caused truncation */
+      overflow-wrap:anywhere;      /* break long chunks safely */
+      word-break:break-word;
+    }
+
+    .cta-btn{
+      display:inline-block;margin-top:18px;padding:14px 42px;
+      font-size:22px;font-weight:800;color:var(--ctaText);
+      background:var(--cta);border:2px solid var(--cta);border-radius:16px;
+      text-decoration:none;user-select:none;-webkit-tap-highlight-color:transparent;
+      transition:transform .05s ease, background .15s ease, border-color .15s ease;
+    }
+    .cta-btn:active{transform:scale(.98)}
+    .cta-btn:focus-visible{outline:0;box-shadow:0 0 0 3px rgba(103,182,212,.35)}
+    .cta-btn:hover{background:var(--ctaFocus);border-color:var(--ctaFocus)}
+
+    .verify{display:flex;align-items:center;justify-content:center;margin:14px auto 6px}
+    .verify img{width:230px;height:auto;display:block}
+
+    .footer{margin-top:22px}
+    .footer p{font-size:10px}
+
+    @media (min-width:1024px){.headline,.subhead,.steps p{font-size:20px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="1755218039-image.png?v=1" alt="Rewards teaser image" class="header-img" loading="eager">
+
+    <div class="headline">Earn by Testing Games</div>
+    <div class="subhead">3 quick steps — then cash out</div>
+
+    <div class="steps" aria-label="Steps">
+      <p>1. Tap “DOWNLOAD”</p>
+      <p>2. Download the app &amp; register</p>
+      <p>3. Play games → cash out to Venmo, Cash&nbsp;App, gift cards</p>
+    </div>
+
+    <a class="cta-btn" role="button" aria-label="Start earning now"
+       href="https://rewarduplevel.com/aff_c?offer_id=1897&aff_id=27696&source=123-checkout-clip-swag1897-bc798">
+       DOWNLOAD
+    </a>
+
+    <div class="verify" aria-hidden="true">
+      <img src="vfbhytt.png" alt="Verified by TikTok badge">
+    </div>
+
+    <div class="footer"><p>©, All rights reserved</p></div>
+  </div>
+</body>
+</html>
