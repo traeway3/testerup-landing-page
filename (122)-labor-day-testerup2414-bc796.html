@@ -42,7 +42,12 @@
     }
     .steps {
       text-align: center;
-      max-width: 400px;
+      /*
+       * Allow the steps container to scale fluidly on small screens. Using a
+       * percentage instead of a fixed pixel width prevents horizontal
+       * scrolling on devices narrower than 400px.
+       */
+      max-width: 90%;
       margin: 5px auto;
     }
     .steps ol {
@@ -50,13 +55,20 @@
       list-style-position: inside;
     }
     .steps ol li {
+      /*
+       * Increase readability on smaller screens by allowing text to wrap
+       * instead of truncating it with ellipses. The original design used
+       * `white-space: nowrap` with `overflow: hidden` and `text-overflow: ellipsis`,
+       * which shortened longer instructions. Removing those properties lets
+       * list items expand naturally on mobile devices.
+       */
       font-size: 16px;
       font-weight: 700;
       margin: 5px 0;
       color: #000000;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
     }
     .steps ol li::marker {
       color: #DB1C15;
@@ -146,9 +158,14 @@
 
     <div class="steps">
       <ol>
-        <li>Choose A Region Below📍</li>
-        <li>Sign Up and Play 3-5 Games to Start<br>Earning <span style="color:#DB1C15;">(IMPORTANT)</span>🚨</li>
-        <li>Cash out and Repeat💸</li>
+        <!-- Step 1: instruct the user to choose their country. Escape quotes via HTML entities. -->
+        <li>Choose &quot;United States&quot; or &quot;Canada&quot; below</li>
+        <!-- Step 2: emphasise the high earnings and test multiple games. Highlight the earnings in the brand colour. -->
+        <li>Earn <span style="color:#DB1C15;">Over $100+/day</span> by Testing Multiple Games</li>
+        <!-- Step 3: reassure users that any in‑app purchases are reimbursed and boost earnings. Highlight key phrase. -->
+        <li>Pro Tip: All In‑App Purchases Are <span style="color:#DB1C15;">Fully Reimbursed</span> &amp; Multiplies Your Earnings</li>
+        <!-- Step 4: new step encouraging daily payouts. -->
+        <li>Get Paid Daily!</li>
       </ol>
     </div>
 
