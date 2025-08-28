@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOW IT WORKS</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Canva+Sans:wght@400;700&display=swap');
+
+    :root{
+      --brand:#DB1C15;
+      --text:#000000;
+    }
+
+    /* Base */
+    html, body {
+      height: 100%;
+    }
+    body {
+      font-family: 'Canva Sans', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #FFFFFF;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%; /* prevent iOS zoom weirdness */
+    }
+
+    /* Hero/top section */
+    .top-section {
+      background: url('(2)testeruppbackground.png') no-repeat center center;
+      background-size: cover;
+      width: 100vw;
+      height: auto;
+      padding: 12px 0; /* reduced vertical space */
+    }
+
+    .card-image {
+      max-width: 70%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .main-content {
+      background: transparent;
+      padding: 10px;
+      margin: 0 auto;
+      max-width: 90%;
+    }
+
+    h1 {
+      margin: 10px 0 6px;
+      font-size: 28px;
+      line-height: 1.1;
+      color: var(--text);
+    }
+    h1 span {
+      color: var(--brand);
+      font-weight: bold;
+    }
+
+    /* Steps */
+    .steps {
+      text-align: center;
+      max-width: 90%;
+      margin: 6px auto 8px;
+    }
+    .steps ol {
+      padding-left: 0;            /* keep markers inside to save horizontal space */
+      list-style-position: inside;
+      margin: 0;
+    }
+    .steps ol li {
+      font-size: 20px;            /* requested size */
+      line-height: 1.35;          /* better readability on mobile */
+      font-weight: 700;
+      margin: 8px 0;
+      color: var(--text);
+      white-space: normal;        /* allow wrapping */
+      word-break: break-word;     /* prevent overflow on tiny screens */
+    }
+    .steps ol li::marker {
+      color: #000000;             /* numbers in black */
+      font-weight: bold;
+    }
+
+    /* Buttons */
+    .cta-btn,
+    .location-btn {
+      display: block;
+      width: 92%;
+      max-width: 520px;
+      margin: 6px auto;
+      background: var(--brand);
+      color: #FFFFFF;
+      font-size: 22px;
+      line-height: 1.1;
+      font-weight: 800;
+      padding: 16px 14px;         /* 44px+ tap height target */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cta-btn:hover,
+    .location-btn:hover {
+      background: #a81310;
+    }
+
+    .cta-btn { display: none; }
+
+    .location-section { margin-top: 6px; }
+
+    .thank-you {
+      display: none;
+      margin-top: 8px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 6px 0 14px;
+      background: #ffffff;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+    .footer hr {
+      width: 90%;
+      border: 1px solid black;
+      margin: 16px auto 10px;
+    }
+
+    /* ------- Mobile Optimizations ------- */
+    /* Small phones */
+    @media (max-width: 480px) {
+      .top-section { padding: 10px 0; }       /* even tighter hero spacing */
+      .card-image  { max-width: 74%; }
+      h1           { font-size: 26px; }
+      .steps ol li { font-size: 19px; }       /* keep balance on small phones */
+      .cta-btn,
+      .location-btn { font-size: 20px; padding: 16px 14px; }
+    }
+
+    /* Extra small phones */
+    @media (max-width: 360px) {
+      .top-section { padding: 8px 0; }
+      .card-image  { max-width: 76%; }
+      h1           { font-size: 24px; }
+      .steps ol li { font-size: 18px; }       /* avoid wrapping too many lines */
+      .cta-btn,
+      .location-btn { font-size: 18px; padding: 15px 12px; }
+    }
+  </style>
+  <script>
+    function showThankYou() {
+      document.querySelector('.location-section').style.display = 'none';
+      document.querySelector('.thank-you').style.display = 'block';
+      document.querySelector('.cta-btn').style.display = 'block';
+
+      // Optional: keep or remove this if you do/don't want Step 1 to change after selection.
+      const firstStep = document.querySelectorAll('.steps ol li')[0];
+      if (firstStep) {
+        firstStep.textContent = 'Download the Testerup app';
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="top-section">
+    <img src="(2)testerupplogo.png" alt="Cash Gift Card Image" class="card-image">
+  </div>
+
+  <div class="main-content">
+    <h1>HOW IT WORKS</h1>
+
+    <div class="steps">
+      <ol>
+        <li>Choose "United States" or "Canada" below</li>
+        <li>Earn <span style="color:#DB1C15;">Over $100+/day</span> by Testing Multiple Games</li>
+        <li>Pro Tip: All In-App Purchases Are <span style="color:#DB1C15;">Fully Reimbursed</span> &amp; Multiplies Your Earnings</li>
+        <li>Get Paid Daily!</li>
+      </ol>
+    </div>
+
+    <div class="location-section">
+      <button class="location-btn" onclick="showThankYou()">United States</button>
+      <button class="location-btn" onclick="showThankYou()">Canada</button>
+    </div>
+
+    <div class="thank-you">
+      <h2>Thank you! Click below to start earning👇</h2>
+      <a href="https://rewarrdsgiant.com/aff_c?offer_id=2414&aff_id=27696&source=123-checkout-clip-testerup2414-bc797" class="cta-btn">START EARNING NOW!</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <hr>
+    <p style="text-align:center;">HUGE TIP: THE MORE GAMES YOU COMPLETE, THE MORE YOU EARN!</p>
+    <p>COPYRIGHT 2024 ©</p>
+  </div>
+</body>
+</html>
