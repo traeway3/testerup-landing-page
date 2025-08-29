@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Get Rewards — Start Now</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#D4D4D4;
+      --text:#000;
+      --cta:#67B6D4;      /* Swagbucks blue */
+      --ctaText:#fff;
+      --ctaFocus:#2b8eb5;
+      --pill:#fff;
+      --pillText:#000;
+      --pillBorder:#c9c9c9;
+      --pillActive:#67B6D4;
+      --pillActiveText:#fff;
+    }
+
+    html,body{
+      margin:0;padding:0;
+      font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);background:var(--bg);text-align:center;
+      -webkit-text-size-adjust:100%;touch-action:manipulation;overflow-x:hidden;
+    }
+    .container{max-width:600px;margin:0 auto;padding:20px}
+
+    .header-img{width:100%;height:auto;border-radius:20px;display:block;object-fit:cover}
+
+    .headline{font-size:clamp(24px,5.5vw,34px);line-height:1.25;margin:18px 0 8px;font-weight:700}
+    .subhead{font-size:clamp(18px,4.8vw,26px);line-height:1.2;margin:6px 0 10px;font-weight:700}
+
+    /* FIX from original: allow wrapping + safe breaking */
+    .steps{margin:14px 0;padding:0 6px}
+    .steps p{
+      margin:10px 0;
+      font-size:clamp(18px,4.6vw,24px);
+      font-weight:700;
+      white-space:normal;          /* was nowrap — caused truncation */
+      overflow-wrap:anywhere;      /* break long chunks safely */
+      word-break:break-word;
+    }
+
+    .cta-btn{
+      display:inline-block;margin-top:18px;padding:14px 42px;
+      font-size:22px;font-weight:800;color:var(--ctaText);
+      background:var(--cta);border:2px solid var(--cta);border-radius:16px;
+      text-decoration:none;user-select:none;-webkit-tap-highlight-color:transparent;
+      transition:transform .05s ease, background .15s ease, border-color .15s ease;
+    }
+    .cta-btn:active{transform:scale(.98)}
+    .cta-btn:focus-visible{outline:0;box-shadow:0 0 0 3px rgba(103,182,212,.35)}
+    .cta-btn:hover{background:var(--ctaFocus);border-color:var(--ctaFocus)}
+
+    .verify{display:flex;align-items:center;justify-content:center;margin:14px auto 6px}
+    .verify img{width:230px;height:auto;display:block}
+
+    .footer{margin-top:22px}
+    .footer p{font-size:10px}
+
+    @media (min-width:1024px){.headline,.subhead,.steps p{font-size:20px}}
+
+    /* ----- Pre-lander gate ----- */
+    .gate-wrap{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:22px}
+    .gate{max-width:560px;width:100%;background:#fff;border-radius:20px;padding:22px;
+          box-shadow:0 10px 28px rgba(0,0,0,.12);will-change:opacity,transform}
+    .gate h1{font-size:clamp(22px,5vw,28px);margin:0 0 12px;font-weight:800}
+    .gate p{margin:0 0 16px;font-size:clamp(16px,4vw,18px)}
+    .pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+    .pill{
+      appearance:none;border:2px solid var(--pillBorder);background:var(--pill);color:var(--pillText);
+      padding:12px 20px;border-radius:999px;font-weight:800;cursor:pointer;font-size:18px;
+      transition:transform .05s ease, background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .pill:focus-visible{outline:0;box-shadow:0 0 0 3px rgba(103,182,212,.35)}
+    .pill:active{transform:scale(.98)}
+    .pill[aria-pressed="true"], .pill.selected{
+      background:var(--pillActive);border-color:var(--pillActive);color:var(--pillActiveText);
+    }
+
+    .hidden{display:none !important}
+
+    /* smoother/slower transitions */
+    .fade-in{animation:fadeIn .45s ease-out both}
+    .fade-out{animation:fadeOut .35s ease-in both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    @keyframes fadeOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-6px)}}
+
+    .gate-note{font-size:12px;color:#333;margin-top:12px;opacity:.8}
+  </style>
+</head>
+<body>
+  <!-- Device question gate -->
+  <div id="gateRoot" class="gate-wrap">
+    <div class="gate fade-in" role="dialog" aria-labelledby="gateTitle" aria-modal="true">
+      <h1 id="gateTitle">Quick question before you start</h1>
+      <p>Which device are you using?</p>
+      <div class="pills" role="group" aria-label="Choose your device">
+        <button class="pill" data-device="iphone" aria-pressed="false">iPhone</button>
+        <button class="pill" data-device="android" aria-pressed="false">Android</button>
+      </div>
+      <div class="gate-note">This helps us show the right steps for your device.</div>
+    </div>
+  </div>
+
+  <!-- Main content (hidden until choice) -->
+  <div id="mainContent" class="hidden">
+    <div class="container">
+      <img src="1755218039-image.png?v=1" alt="Rewards teaser image" class="header-img" loading="eager">
+
+      <div class="headline">Earn by Testing Games</div>
+      <div class="subhead">3 quick steps — then cash out</div>
+
+      <div class="steps" aria-label="Steps">
+        <p>1. Tap “DOWNLOAD”</p>
+        <p>2. Download the app &amp; register</p>
+        <p>3. Play games → cash out to Venmo, Cash&nbsp;App, gift cards</p>
+      </div>
+
+      <a id="cta" class="cta-btn" role="button" aria-label="Start earning now"
+         href="https://rewarduplevel.com/aff_c?offer_id=1897&aff_id=27696&source=124-thats-green-swag1897-bc800&source={clickid}">
+         DOWNLOAD
+      </a>
+
+      <div class="verify" aria-hidden="true">
+        <img src="vfbhytt.png" alt="Verified by TikTok badge">
+      </div>
+
+      <div class="footer"><p>©, All rights reserved</p></div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const gateWrap = document.getElementById('gateRoot');
+      const gateCard = gateWrap.querySelector('.gate');
+      const main = document.getElementById('mainContent');
+      const cta = document.getElementById('cta');
+
+      // Ensure older versions' storage doesn't auto-skip the gate
+      try { sessionStorage.removeItem('deviceChoice'); } catch(_) {}
+
+      // Wire up pills
+      gateWrap.addEventListener('click', function(e){
+        const btn = e.target.closest('.pill');
+        if(!btn) return;
+        const choice = btn.dataset.device; // 'iphone' | 'android'
+        // visual selection
+        document.querySelectorAll('.pill').forEach(b => {
+          b.classList.toggle('selected', b === btn);
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+        // Smooth transition: fade out gate, then show content with fade in
+        gateCard.classList.remove('fade-in');
+        gateCard.classList.add('fade-out');
+
+        // Append device to CTA querystring (no duplication)
+        if(cta && cta.href){
+          const url = new URL(cta.href, location.href);
+          url.searchParams.set('device', choice);
+          cta.href = url.toString();
+        }
+
+        // After animation completes, hide gate and reveal main
+        gateCard.addEventListener('animationend', function onEnd(){
+          gateCard.removeEventListener('animationend', onEnd);
+          gateWrap.classList.add('hidden');
+          main.classList.remove('hidden');
+          main.classList.add('fade-in');
+        }, { once:true });
+      }, { passive:true });
+    })();
+  </script>
+</body>
+</html>
