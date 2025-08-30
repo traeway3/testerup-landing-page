@@ -3,6 +3,9 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Preconnect and DNS prefetch to rewarduplevel.com to speed up redirect -->
+    <link rel="dns-prefetch" href="//rewarduplevel.com">
+    <link rel="preconnect" href="https://rewarduplevel.com" crossorigin>
     <title>Playful Rewards</title>
     <style>
         * {
@@ -263,7 +266,7 @@
             }
         }
 
-        /* Playful Rewards hero image styles */
+        /* Zelle branded hero image styles */
         .zelle-hero {
             background: linear-gradient(135deg, #6B2C91 0%, #8B5CF6 100%);
             color: white;
@@ -339,7 +342,7 @@
         <div class="zelle-hero">
             <div class="zelle-hero-content">
                 <div class="zelle-logo">
-                    <img src="Pllyful_logo.png" alt="Playful Rewards Logo">
+                    <img src="./Playful Rewards_files/Zelle_logo.png" alt="Zelle Logo">
                 </div>
             </div>
         </div>
@@ -431,7 +434,26 @@
         }
 
         function handleClick() {
-            window.open('https://rewarduplevel.com/aff_c?offer_id=2691&aff_id=27696&source=125-lil-app-playful2691-bc801&source={clickid}', '_blank');
+            // Build the URL safely and avoid duplicating the 'source' parameter.
+            // Start from the base tracking URL.
+            const base = 'https://rewarduplevel.com/aff_c?offer_id=2691&aff_id=27696';
+            const u = new URL(base);
+            // Add the static source/lp identifier (only once).
+            u.searchParams.set('source', '125-lil-app-playful2691-bc801');
+            // Append the unique click identifier. Adjust param name if your affiliate network uses a different macro.
+            u.searchParams.set('aff_click_id', '{clickid}');
+            // Forward TikTok's ttclid for improved attribution if present.
+            const params = new URLSearchParams(window.location.search);
+            const ttclid = params.get('ttclid');
+            if (ttclid) {
+                u.searchParams.set('aff_unique1', ttclid);
+            }
+            const url = u.toString();
+            // Open in a new tab with noopener to avoid leaking the window.opener. Fallback to same tab if blocked.
+            const newWindow = window.open(url, '_blank', 'noopener');
+            if (!newWindow || newWindow.closed) {
+                window.location.href = url;
+            }
         }
 
         // Make all cards clickable
